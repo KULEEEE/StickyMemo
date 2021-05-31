@@ -6,11 +6,15 @@ import { mockComponent } from 'react-dom/test-utils';
 import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react-dom';
 
 
-function DefaultNote({ addTodo, addPlain }) {
+function DefaultNote({ addNote }) {
   return (
     <div className="single-note">
-      <button className="add-button" onClick={addTodo}>Make Todo</button>
-      <button className="add-button" onClick={addPlain}>Make Plain</button>
+      {/* ERROR */}
+      {/* <button className="add-button" onClick={addNote('todo')}>Make Todo</button>
+      <button className="add-button" onClick={addNote('plain')}>Make Plain</button> */}
+      {/* CORRECT */}
+      <button className="add-button" onClick={()=>{addNote('todo')}}>Make Todo</button>
+      <button className="add-button" onClick={()=>{addNote('plain')}}>Make Plain</button>
     </div>
   );
 }
@@ -19,24 +23,15 @@ function App() {
   const [pinned, setPinned] = useState([]);
   const [general, setGeneral] = useState([]);
 
-  function addTodo() {
+  function addNote(ntype){
     const single_note = {
       id: uuid(),
-      notetype: 'todo'
-    };
+      notetype: ntype
+    }
     const newNotes = [...general, single_note];
     setGeneral(newNotes);
   }
 
-  function addPlain() {
-    const single_note = {
-      id: uuid(),
-      notetype: 'plain'
-    };
-    const newNotes = [...general, single_note];
-    setGeneral(newNotes);
-  }
-  
   return (
     <section className="App">
       <header className="App-header"> 
@@ -45,12 +40,11 @@ function App() {
 
       <section className="pinned-zone">
         <header>Pinned zone</header>
-
       </section>
 
       <section className="general-zone">
         <header>General zone</header>
-        <DefaultNote addPlain={addPlain} addTodo={addTodo} />
+        <DefaultNote addNote={addNote}/>
       </section>
       
     </section>
