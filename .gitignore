@@ -21,3 +21,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+/src/AppUtils.js
+/src/DefaultNote.js
+/src/PlainNote.js
+/src/TodoNote.js
+/src/TodoUtils.js
