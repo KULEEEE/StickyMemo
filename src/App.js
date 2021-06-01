@@ -6,7 +6,7 @@ import { mockComponent } from 'react-dom/test-utils';
 import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react-dom';
 import { DefaultNote } from './DefaultNote';
 
-function SingleNote({notetype}){
+function SingleNote({id, section, notetype, deleteNote}){
   return (
     <div className="single-note">
       <div className="note-toolbar">
@@ -15,7 +15,10 @@ function SingleNote({notetype}){
       </div>
       <NoteContent notetype={notetype}/>
       <div className="destroy">
-        <button className="destroy"><img src='' alt='destroyIcon' /></button>
+        <button className="destroy"
+                onClick={()=>deleteNote(section, id)}>
+                  <img src='' alt='destroyIcon' />
+        </button>
       </div>
     </div>
   );
@@ -51,11 +54,21 @@ function App() {
   function addNote(ntype){
     const single_note = {
       id: uuid(),
-      notetype: ntype,
-      dummy: 'hello'
+      notetype: ntype
     }
     const newNotes = [...general, single_note];
     setGeneral(newNotes);
+  }
+
+  function deleteNote(section, id) {
+    if (section == 'general') {
+      const newNotes = general.filter(singlenote => singlenote.id !== id);
+      setGeneral(newNotes);
+    }
+    else {
+      const newNotes = pinned.filter(singlenote => singlenote.id !== id);
+      setPinned(newNotes);
+    }
   }
 
   return (
@@ -66,13 +79,13 @@ function App() {
 
       <section className="pinned-zone">
         <header>Pinned zone</header>
-        {pinned.map(singlenote => (<SingleNote key = {singlenote.id} notetype={singlenote.notetype}/>))}
+        {pinned.map(singlenote => (<SingleNote key = {singlenote.id} id = {singlenote.id} section='pinned' notetype={singlenote.notetype} deleteNote={deleteNote}/>))}
       </section>
 
       <section className="general-zone">
         <header>General zone</header>
         <DefaultNote addNote={addNote}/>
-        {general.map(singlenote => (<SingleNote key = {singlenote.id} notetype={singlenote.notetype}/>))}
+        {general.map(singlenote => (<SingleNote key = {singlenote.id} id = {singlenote.id} section='general' notetype={singlenote.notetype} deleteNote={deleteNote}/>))}
       </section>
     </section>
   );
