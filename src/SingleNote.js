@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Todo } from './Todo';
+import { v4 as uuid } from 'uuid';
+import pin from './pin.png';
 
 export function SingleNote({ id, section, notetype, destroyNote, moveSection }) {
   return (
@@ -8,15 +10,16 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection }) 
         <button className='pin'
                 onClick= {()=>moveSection(section, id)}
                 >
-          <img src='' alt='pinIcon' />
+          <img src={pin} alt='pinIcon' className='pinIcon' />
         </button>
         <button className='lang'><img src='' alt='langIcon' /></button>
       </div>
       <NoteContent notetype={notetype} />
       <div className="destroy">
-        <button className="destroy"
+        <button type="button" class="btn btn-light btn-sm" 
           onClick={() => destroyNote(section, id)}>
-          <img src='' alt='destroyIcon' />
+          {/* <img src='' alt='destroyIcon' /> */}
+          메모 삭제
         </button>
       </div>
     </div>
@@ -37,7 +40,7 @@ function NoteContent({ notetype }) {
     return (
       <div className="content-plain">
         <form>
-          <input className="content" type="text" placeholder="This is plain text note..."></input>
+          <input className="plain-adder" type="text" placeholder="This is plain text note..."></input>
         </form>
       </div>
     );

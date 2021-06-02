@@ -7,6 +7,7 @@ import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react-dom';
 import { DefaultNote } from './DefaultNote';
 import { AppUtils } from './AppUtils';
 import { SingleNote } from './SingleNote';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {    
   const{
