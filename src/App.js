@@ -13,7 +13,8 @@ function App() {
     pinned,
     general,
     addNote,
-    destroyNote} = AppUtils();
+    destroyNote,
+    moveSection} = AppUtils();
 
   return (
     <section className="App">
@@ -23,13 +24,13 @@ function App() {
 
       <section className="pinned-zone">
         <header>Pinned zone</header>
-        {pinned.map(singlenote => (<SingleNote key = {singlenote.id} id = {singlenote.id} section='pinned' notetype={singlenote.notetype} destroyNote={destroyNote}/>))}
+        {pinned.map(singlenote => (<SingleNote key = {singlenote.id} id = {singlenote.id} section='pinned' notetype={singlenote.notetype} destroyNote={destroyNote} moveSection={moveSection}/>))}
       </section>
 
       <section className="general-zone">
         <header>General zone</header>
         <DefaultNote addNote={addNote}/>
-        {general.map(singlenote => (<SingleNote key = {singlenote.id} id = {singlenote.id} section='general' notetype={singlenote.notetype} destroyNote={destroyNote}/>))}
+        {general.map(singlenote => (<SingleNote key = {singlenote.id} id = {singlenote.id} section='general' notetype={singlenote.notetype} destroyNote={destroyNote} moveSection={moveSection}/>))}
       </section>
     </section>
   );

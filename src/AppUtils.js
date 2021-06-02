@@ -24,12 +24,29 @@ export function AppUtils() {
         setPinned(newNotes);
       }
     }
+
+    function moveSection(section, note_id){
+      var newPinned=[];
+      var newGeneral=[];
+
+      if (section==='general'){
+        newPinned = [...pinned, ...general.filter(singlenote => singlenote.id === note_id)]
+        newGeneral = general.filter(singlenote => singlenote.id !== note_id);
+      }
   
+      else{
+        newPinned = pinned.filter(singlenote => singlenote.id !== note_id);
+        newGeneral = [...general, ...pinned.filter(singlenote => singlenote.id === note_id)]
+      }
+      setPinned(newPinned);
+      setGeneral(newGeneral);
+    }
 
   return {
     pinned,
     general,
     addNote,
-    destroyNote
+    destroyNote,
+    moveSection
   };
 }

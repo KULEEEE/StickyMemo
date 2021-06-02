@@ -1,10 +1,14 @@
 import React from 'react';
 
-export function SingleNote({ id, section, notetype, destroyNote }) {
+export function SingleNote({ id, section, notetype, destroyNote, moveSection }) {
   return (
     <div className="single-note">
       <div className="note-toolbar">
-        <button className='pin'><img src='' alt='pinIcon' /></button>
+        <button className='pin'
+                onClick= {()=>moveSection(section, id)}
+                >
+          <img src='' alt='pinIcon' />
+        </button>
         <button className='lang'><img src='' alt='langIcon' /></button>
       </div>
       <NoteContent notetype={notetype} />
@@ -40,3 +44,5 @@ function NoteContent({ notetype }) {
     );
   }
 }
+
+
