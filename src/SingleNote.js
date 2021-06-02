@@ -15,9 +15,10 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection }) 
       </div>
       <NoteContent notetype={notetype} />
       <div className="destroy">
-        <button className="destroy"
+        <button type="button" class="btn btn-light btn-sm" 
           onClick={() => destroyNote(section, id)}>
-          <img src='' alt='destroyIcon' />
+          {/* <img src='' alt='destroyIcon' /> */}
+          메모 삭제
         </button>
       </div>
     </div>
@@ -38,7 +39,7 @@ function NoteContent({ notetype }) {
     return (
       <div className="content-plain">
         <form>
-          <input className="content" type="text" placeholder="This is plain text note..."></input>
+          <input className="plain-adder" type="text" placeholder="This is plain text note..."></input>
         </form>
       </div>
     );
@@ -128,7 +129,7 @@ function TodoItem({ todo, deleteTodo }) {
       />
       <label>{todo.task}</label>
       <button
-        className='destroy'
+        className='task-destroy'
         onClick={() => deleteTodo(id)} />
     </li>
   );
