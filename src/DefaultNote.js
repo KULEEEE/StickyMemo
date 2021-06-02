@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 
-export function DefaultNote({ addNote }) {
+export function DefaultNote({ addTodo, addPlain }) {
   return (
     <div className="single-note">
       {/* ERROR */}
@@ -17,4 +17,3 @@ export function DefaultNote({ addNote }) {
     </div>
   );
 }
-
