@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
+import pin from './pin.png';
 
 export function SingleNote({ id, section, notetype, destroyNote, moveSection }) {
   return (
@@ -8,7 +9,7 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection }) 
         <button className='pin'
                 onClick= {()=>moveSection(section, id)}
                 >
-          <img src='' alt='pinIcon' />
+          <img src={pin} alt='pinIcon' className='pinIcon' />
         </button>
         <button className='lang'><img src='' alt='langIcon' /></button>
       </div>

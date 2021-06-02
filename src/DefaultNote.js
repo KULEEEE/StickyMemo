@@ -3,7 +3,7 @@ import { Button, ButtonToolbar } from 'react-bootstrap';
 
 export function DefaultNote({ addNote }) {
   return (
-    <div className="single-note">
+    <div className="default-note">
       {/* ERROR */}
       {/* <button className="add-button" onClick={addNote('todo')}>Make Todo</button>
       <button className="add-button" onClick={addNote('plain')}>Make Plain</button> */}
