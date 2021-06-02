@@ -1,20 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState } from 'react';
-import { v4 as uuid } from 'uuid';
+import React from 'react';
 import { mockComponent } from 'react-dom/test-utils';
 import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react-dom';
-import { DefaultNote } from './DefaultNote';
+import { TodoNote } from './TodoNote';
+import { PlainNote } from './PlainNote';
 import { AppUtils } from './AppUtils';
-import { SingleNote } from './SingleNote';
+import { DefaultNote } from './DefaultNote';
 
-function App() {    
-  const{
-    pinned,
-    general,
-    addNote,
-    destroyNote} = AppUtils();
 
+function App() {   
+  const{pinned,
+        generals,
+        addTodo,
+        addPlain,
+        deleteNote,
+        moveSection} = AppUtils();
+        
   return (
     <section className="App">
       <header className="App-header"> 
@@ -23,14 +25,25 @@ function App() {
 
       <section className="pinned-zone">
         <header>Pinned zone</header>
-        {pinned.map(singlenote => (<SingleNote key = {singlenote.id} id = {singlenote.id} section='pinned' notetype={singlenote.notetype} destroyNote={destroyNote}/>))}
+        {pinned.map(pin => (
+          pin.notetype=='todo'? 
+          <TodoNote key = {pin.id} note_id = {pin.id} section = 'pinned' deleteNote={deleteNote} moveSection={moveSection}/> : 
+          <PlainNote key = {pin.id} note_id = {pin.id} section = 'pinned' deleteNote={deleteNote} moveSection={moveSection}/>)
+          )
+        }
       </section>
 
       <section className="general-zone">
         <header>General zone</header>
-        <DefaultNote addNote={addNote}/>
-        {general.map(singlenote => (<SingleNote key = {singlenote.id} id = {singlenote.id} section='general' notetype={singlenote.notetype} destroyNote={destroyNote}/>))}
+        <DefaultNote addPlain={addPlain} addTodo={addTodo} />
+        {generals.map(general => (
+          general.notetype=='todo'? 
+            <TodoNote key = {general.id} note_id = {general.id} section = 'generals' deleteNote={deleteNote} moveSection={moveSection}/> :
+            <PlainNote key = {general.id} note_id = {general.id} section = 'generals' deleteNote={deleteNote} moveSection={moveSection}/>)
+          )
+        }
       </section>
+      
     </section>
   );
 }

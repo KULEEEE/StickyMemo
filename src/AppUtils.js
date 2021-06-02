@@ -1,35 +1,64 @@
 import React, { useState } from 'react';
+import { TodoNote } from './TodoNote';
 import { v4 as uuid } from 'uuid';
 
 export function AppUtils() {
-    const [pinned, setPinned] = useState([]);
-    const [general, setGeneral] = useState([]);
-  
-    function addNote(ntype){
-      const single_note = {
-        id: uuid(),
-        notetype: ntype
-      }
-      const newNotes = [...general, single_note];
-      setGeneral(newNotes);
+  const [pinned, setPinned] = useState([]);
+  const [generals, setGenerals] = useState([]);
+
+  function addTodo() {
+    const note = {
+      id: uuid(),
+      notetype: 'todo'
+    };
+    const newNotes = [...generals, note];
+    setGenerals(newNotes);
+  }
+
+  function addPlain() {
+    const note = {
+      id: uuid(),
+      notetype: 'plain'
+    };
+    const newNotes = [...generals, note];
+    setGenerals(newNotes);
+  }
+
+  function deleteNote(section, id) {
+    if (section == 'generals') {
+      const newNotes = generals.filter(note => note.id !== id);
+      setGenerals(newNotes);
     }
-  
-    function destroyNote(section, id) {
-      if (section == 'general') {
-        const newNotes = general.filter(singlenote => singlenote.id !== id);
-        setGeneral(newNotes);
-      }
-      else {
-        const newNotes = pinned.filter(singlenote => singlenote.id !== id);
-        setPinned(newNotes);
-      }
+    else {
+      const newNotes = pinned.filter(note => note.id !== id);
+      setPinned(newNotes);
     }
-  
+  }
+
+  function moveSection(section, note_id){
+    if (section==='generals'){
+      const newPinned = [...pinned, ...generals.filter(note => note.id === note_id)]
+      const newGenerals = generals.filter(note => note.id !== note_id);
+
+      setPinned(newPinned);
+      setGenerals(newGenerals);
+    }
+
+    else{
+      const newPinned = pinned.filter(note => note.id !== note_id);
+      const newGenerals = [...generals, ...pinned.filter(note => note.id === note_id)]
+
+      setPinned(newPinned);
+      setGenerals(newGenerals);
+    }
+  }
 
   return {
     pinned,
-    general,
-    addNote,
-    destroyNote
+    generals,
+    addTodo,
+    addPlain,
+    deleteNote,
+    moveSection
   };
 }

@@ -1,15 +1,10 @@
 import React from 'react';
 
-export function DefaultNote({ addNote }) {
+export function DefaultNote({ addTodo, addPlain }) {
   return (
     <div className="single-note">
-      {/* ERROR */}
-      {/* <button className="add-button" onClick={addNote('todo')}>Make Todo</button>
-      <button className="add-button" onClick={addNote('plain')}>Make Plain</button> */}
-      {/* CORRECT */}
-      <button className="add-button" onClick={()=>{addNote('todo')}}>Make Todo</button>
-      <button className="add-button" onClick={()=>{addNote('plain')}}>Make Plain</button>
+      <button onClick={addTodo}>Make Todo</button>
+      <button onClick={addPlain}>Make Plain</button>
     </div>
   );
 }
-
