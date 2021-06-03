@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
+import axios from 'axios';
 
 export function PlainUtils() {
   const [plains, setPlains] = useState([]);
@@ -28,11 +29,27 @@ export function PlainUtils() {
     setPlains(newPlains);
   };
 
+  function translatePlain(){
+    const headers={
+      'X-Naver-Client-Id' : 'JXgBev9YnhIrGCrQOXtw',
+      'X-Naver-Client-Secret' : '1nwuW7Sf4i'
+    }
+    
+    const translateApi = async () => {
+        const response = await axios.post(
+          '/api/v1/papago/n2mt', {source : 'ko', target : 'en', text : '안녕'}, {headers}
+        );
+        console.log(response.data); // 데이터는 response.data 안에 들어있습니다.
+      }
+    translateApi();
+  }
+
   return {
     plains,
     addPlain,
     deletePlain,
-    togglePlain
+    togglePlain,
+    translatePlain
   };
 
 }
