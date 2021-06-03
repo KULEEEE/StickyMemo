@@ -3,6 +3,8 @@ import { v4 as uuid } from 'uuid';
 import pin from './pin.png';
 
 export function SingleNote({ id, section, notetype, destroyNote, moveSection }) {
+  const today = new Date
+  let dates = useState(today.toLocaleString());
   return (
     <div className="single-note">
       <div className="note-toolbar">
@@ -20,6 +22,7 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection }) 
           {/* <img src='' alt='destroyIcon' /> */}
           메모 삭제
         </button>
+        {dates}
       </div>
     </div>
   );
@@ -27,7 +30,6 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection }) 
 
 function NoteContent({ notetype }) {
   const ntype = notetype;
-
   if (ntype === 'todo') {
     return (
       <div className="content-todo">
@@ -45,7 +47,6 @@ function NoteContent({ notetype }) {
     );
   }
 }
-
 
 function Todo (){
   const [todos, setTodos] = useState([]);
@@ -72,6 +73,7 @@ function Todo (){
   );
 }
 
+
 function TodoHeader({ addTodo }) {
   const [value, setValue] = useState('');
 
@@ -85,6 +87,7 @@ function TodoHeader({ addTodo }) {
     addTodo(value);
     setValue('');
   };
+
 
   return (
     <header className='todo-header'>
@@ -108,6 +111,7 @@ function TodoList({ todos = [], deleteTodo}) {
           todo={todo}
           deleteTodo={deleteTodo} />))}
     </ul>
+    
   );
 }
 
