@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
 export function TodoUtils() {
-    const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState([]);
 
     function addTodo (task) {
         const todo = {
