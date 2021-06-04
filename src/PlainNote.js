@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PlainUtils } from './PlainUtils';
 
-export function PlainNote({note_id, section, deleteNote, moveSection}) {
+export function PlainNote({note_id, section, deleteNote, moveSection, translatePlain}) {
   // const [section, setSection] = useState('generals');
 
   // const toggleSection = () =>{
@@ -11,7 +11,8 @@ export function PlainNote({note_id, section, deleteNote, moveSection}) {
   const { plains,
     addPlain,
     deletePlain,
-    togglePlain
+    togglePlain,
+    translatePlain
   } = PlainUtils();
 
 
@@ -24,7 +25,7 @@ export function PlainNote({note_id, section, deleteNote, moveSection}) {
             }
           }>
           <img src='' alt='pinIcon'/></button>
-        <button className='lang'><img src='' alt='langIcon'/></button>
+        <button className='lang' onClick={() => translatePlain()}><img src='' alt='langIcon'/></button>
       </div>
       <PlainHeader addPlain={addPlain} />
       <PlainList

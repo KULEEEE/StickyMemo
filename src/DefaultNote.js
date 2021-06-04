@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 
-
 export function DefaultNote({ addNote }) {
   return (
     <div className="default-note">
