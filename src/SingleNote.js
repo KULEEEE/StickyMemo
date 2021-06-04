@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Todo } from './Todo';
 import { v4 as uuid } from 'uuid';
 import pin from './pin.png';
 
@@ -48,6 +49,9 @@ function NoteContent({ notetype }) {
   }
 }
 
+<<<<<<< HEAD
+
+=======
 function Todo (){
   const [todos, setTodos] = useState([]);
 
@@ -138,4 +142,5 @@ function TodoItem({ todo, deleteTodo }) {
     </li>
   );
 }
+>>>>>>> bfd5d7fbe1b5c6595406285b08e5a9ee53c9c91f
 
