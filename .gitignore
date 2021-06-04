@@ -22,7 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-/src/PlainNote.js
-/src/TodoNote.js
-/src/TodoUtils.js
+
 

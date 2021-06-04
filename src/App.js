@@ -9,6 +9,7 @@ import { AppUtils } from './AppUtils';
 import { SingleNote } from './SingleNote';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 function App() {    
   const{
     pinned,
