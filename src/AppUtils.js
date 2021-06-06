@@ -3,8 +3,14 @@ import { v4 as uuid } from 'uuid';
 import axios from 'axios';
 
 export function AppUtils() {
-    const [pinned, setPinned] = useState([]);
-    const [general, setGeneral] = useState([]);
+    const [pinned, setPinned] = useState([
+      {id:uuid(),notetype:'plain'}
+    ]);
+    const [general, setGeneral] = useState([
+      {id:uuid(),notetype:'plain'},
+      {id:uuid(),notetype:'plain'},
+      {id:uuid(),notetype:'plain'}
+    ]);
   
     function addNote(ntype){
       const single_note = {
