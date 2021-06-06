@@ -32,7 +32,7 @@ export function AppUtils() {
       }
     }
 
-    function translatePlain(){
+    function translatePlain(section, id){
       const headers={
         'X-Naver-Client-Id' : 'JXgBev9YnhIrGCrQOXtw',
         'X-Naver-Client-Secret' : '1nwuW7Sf4i'
