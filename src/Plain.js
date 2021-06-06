@@ -28,13 +28,7 @@ function PlainHeader() {
   
     return (
       <header className='plain-header'>
-        <input
-          className='plain-adder'
-          placeholder='Write here'
-          value={value}
-          onChange={handleOnChange}
-          onKeyUp={submitPlain}
-          autoFocus />
+      <textarea name="plain-adder" rows="8" cols="35" placeholder='Write here' value={value} onChange={handleOnChange} onKeyUp={submitPlain} autoFocus></textarea>
       </header>
     );
   }
