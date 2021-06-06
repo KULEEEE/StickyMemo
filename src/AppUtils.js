@@ -52,6 +52,7 @@ export function AppUtils() {
       var newGeneral=[];
 
       if (section==='general'){
+        if(pinned.length > 4) return;
         newPinned = [...pinned, ...general.filter(singlenote => singlenote.id === note_id)]
         newGeneral = general.filter(singlenote => singlenote.id !== note_id);
       }
