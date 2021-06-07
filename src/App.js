@@ -1,9 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState } from 'react';
-import { v4 as uuid } from 'uuid';
-import { mockComponent } from 'react-dom/test-utils';
-import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react-dom';
+import React from 'react';
 import { DefaultNote } from './DefaultNote';
 import { AppUtils } from './AppUtils';
 import { SingleNote } from './SingleNote';
