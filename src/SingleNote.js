@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Todo } from './Todo';
+import { Plain } from './Plain';
+import { v4 as uuid } from 'uuid';
 import pin from './pin.png';
 import { Vocab } from "./Vocab";
 
-export function SingleNote({ id, section, notetype, destroyNote, moveSection }) {
+export function SingleNote({ id, section, notetype, destroyNote, moveSection, translatePlain }) {
   const today = new Date();
   let dates = useState(today.toLocaleString());
 
@@ -14,7 +16,8 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection }) 
                 onClick= {()=>moveSection(section, id)}>
           <img src={pin} alt='pinIcon' className='pinIcon' />
         </button>
-        <button className='lang'><img src='' alt='langIcon' /></button>
+        <button className='lang'
+                onClick={() =>translatePlain()}><img src='' alt='langIcon' /></button>
       </div>
       <NoteContent notetype={notetype} />
       <div className="destroy">
@@ -34,9 +37,7 @@ function NoteContent({ notetype }) {
   else if (ntype === 'plain') {
     return (
       <div className="content-plain">
-        <form>
-          <input className="plain-adder" type="text" placeholder="This is plain text note..."></input>
-        </form>
+        <Plain />
       </div>
     );
   }
