@@ -15,12 +15,13 @@ function App() {
     destroyNote,
     moveSection,
     translatePlain} = AppUtils();
-
+    
+    
   return (
     <section className="App">
-      <header className="App-header"> 
-        <div>Project Name</div>
-      </header>
+       <header className="App-header"> 
+         <div>Project Name</div>
+       </header>
 
       <section className="pinned-zone">
         <header>Pinned zone</header>
@@ -31,7 +32,7 @@ function App() {
         <header>General zone</header>
         <DefaultNote addNote={addNote}/>
         {general.map(singlenote => (<SingleNote key = {singlenote.id} id = {singlenote.id} section='general' notetype={singlenote.notetype} destroyNote={destroyNote} moveSection={moveSection} translatePlain={translatePlain}/>))}
-      </section>
+      </section>  
     </section>
   );
 }

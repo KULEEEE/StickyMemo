@@ -8,6 +8,7 @@ export function DefaultNote({ addNote }) {
         <Button variant="btn btn-outline-secondary" className="add-button" onClick={()=>{addNote('todo')}}>Make Todo</Button>
         <Button variant="btn btn-outline-secondary" className="add-button" onClick={()=>{addNote('plain')}}>Make Plain</Button>
         <Button variant="btn btn-outline-secondary" className="add-button" onClick={()=>{addNote('vocab')}}>Make Vocab</Button>
+        <Button variant="btn btn-outline-secondary" className="add-button" onClick={()=>{addNote('expense')}}>Make Expense</Button>
       </ButtonToolbar>
     </div>
   );

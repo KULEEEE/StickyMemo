@@ -81,8 +81,8 @@ function VocabItem({ vocab, deleteVocab }) {
                 <input placeholder='meaning'
                     value={meaning}
                     onChange={onMeaningChange} />
-                <button onClick={() => deleteVocab(vocab.id)}>-</button>
             </td>
+            <td><button>-</button></td>
         </tr>
     );
 
