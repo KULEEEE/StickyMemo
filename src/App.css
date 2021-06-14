@@ -48,6 +48,18 @@ section{
   height : 20px;
   margin : 3px;
 }
+.langIcon{
+  width : 25px;
+  height : 25px;
+  /* margin : 3px; */
+}
+.lang{
+  background:  #FFFFFF;
+  border : 0;
+  outline: 0;
+  margin : 3px;
+  border-radius: 10px;
+}
 
 .pin{
   border : 0;

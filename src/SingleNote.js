@@ -3,6 +3,7 @@ import { Todo } from './Todo';
 import { Plain } from './Plain';
 import { v4 as uuid } from 'uuid';
 import pin from './pin.png';
+import lang from './lang.png';
 
 export function SingleNote({ id, section, notetype, destroyNote, moveSection, translatePlain}) {
   const today = new Date
@@ -16,7 +17,7 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection, tr
           <img src={pin} alt='pinIcon' className='pinIcon' />
         </button>
         <button className='lang'
-                onClick={() =>translatePlain(section, id)}><img src='' alt='langIcon' /></button>
+                onClick={() =>translatePlain(section, id)}><img src={lang} alt='langIcon' className='langIcon'/></button>
       </div>
       <NoteContent notetype={notetype} />
       <div className="destroy">
