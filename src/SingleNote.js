@@ -20,13 +20,13 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection, tr
                 onClick={() =>translatePlain(section, id)}><img src={lang} alt='langIcon' className='langIcon'/></button>
       </div>
       <NoteContent notetype={notetype} />
+      <div className="date">{dates}</div>
       <div className="destroy">
         <button type="button" class="btn btn-light btn-sm" 
           onClick={() => destroyNote(section, id)}>
           {/* <img src='' alt='destroyIcon' /> */}
           메모 삭제
         </button>
-        {dates}
       </div>
     </div>
   );

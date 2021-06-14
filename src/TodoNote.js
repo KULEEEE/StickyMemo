@@ -31,8 +31,8 @@ export function TodoNote({note_id, section, deleteNote, moveSection}) {
         todos={todos}
         toggleTodo={toggleTodo}
         deleteTodo={deleteTodo} />
-      <div className="destroy">
-        <button className="destroy" onClick={() => deleteNote(section, note_id)}><img src='' alt='destroyIcon'/></button>
+      <div className="deleteTodo">
+        <button className="todo-delete" onClick={() => deleteNote(section, note_id)}><img src='' alt='destroyIcon'/></button>
       </div>
     </div>
   );
@@ -88,9 +88,9 @@ function TodoItem({ todo, toggleTodo, deleteTodo }) {
           type="checkbox"
           checked={completed}
           onChange={() => toggleTodo(id)} />
-        <label>{todo.task}</label>
+        <label class="todo-label">{todo.task}</label>
         <button
-          className='destroy'
+          className='todo-delete'
           onClick={() => deleteTodo(id)} />
       </div>
     </li>
