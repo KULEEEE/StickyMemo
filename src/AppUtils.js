@@ -4,6 +4,8 @@ import axios from 'axios';
 
 export function AppUtils() {
     const [pinned, setPinned] = useState([
+      {id:uuid(),notetype:'plain'},
+      {id:uuid(),notetype:'plain'},
       {id:uuid(),notetype:'plain'}
     ]);
     const [general, setGeneral] = useState([
@@ -52,7 +54,10 @@ export function AppUtils() {
       var newGeneral=[];
 
       if (section==='general'){
-        if(pinned.length > 4) return;
+        if(pinned.length > 4){
+          alert("메모는 최대 4개까지 즐겨찾기할 수 있습니다.");
+          return;
+        }
         newPinned = [...pinned, ...general.filter(singlenote => singlenote.id === note_id)]
         newGeneral = general.filter(singlenote => singlenote.id !== note_id);
       }
