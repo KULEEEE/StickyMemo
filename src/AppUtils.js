@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 export function AppUtils() {
     const [pinned, setPinned] = useState([
@@ -55,7 +56,7 @@ export function AppUtils() {
 
       if (section==='general'){
         if(pinned.length > 4){
-          alert("메모는 최대 4개까지 즐겨찾기할 수 있습니다.");
+          swal("메모는 최대 4개까지 즐겨찾기할 수 있습니다.");
           return;
         }
         newPinned = [...pinned, ...general.filter(singlenote => singlenote.id === note_id)]
