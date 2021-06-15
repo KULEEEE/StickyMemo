@@ -12,7 +12,7 @@ export function Vocab() {
         <div className="content-vocab">
             <table>
                 <tbody>
-                <button className='lang' onClick={() =>translatePlain()}><img src='' alt='langIcon' /></button>
+                    <button className='lang' onClick={() =>translatePlain()}><img src='' alt='langIcon' /></button>
                     <VocabHeader addVocab={addVocab} />
                     {vocabs.map(vocab => (
                         <VocabItem key={vocab.id} vocab={vocab} deleteVocab={deleteVocab} translatePlain={translatePlain}/>

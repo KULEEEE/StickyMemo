@@ -22,7 +22,8 @@ export function VocabUtils() {
   };
 
   function translatePlain(){
-    const newVocabs = []
+    let newVocabs = [...vocabs];
+
     const headers={
       'X-Naver-Client-Id' : 'JXgBev9YnhIrGCrQOXtw',
       'X-Naver-Client-Secret' : '1nwuW7Sf4i'
@@ -35,11 +36,11 @@ export function VocabUtils() {
         return text
       }
     //vocabs.map((vocab)=>{newVocabs.push(translateApi(vocab.word).resolve())});
-    vocabs.map((vocab) => {translateApi(vocab.word).then((text)=>{vocab.meaning=text})
+    newVocabs.map((voc) => {translateApi(voc.word).then((text)=>{voc.meaning=text})
   })
-    setVocabs(vocabs);
-    console.log(vocabs);
-  }
+    console.log(newVocabs);
+    setVocabs(newVocabs);
+  };
 
   return {
     vocabs, setVocabs,
