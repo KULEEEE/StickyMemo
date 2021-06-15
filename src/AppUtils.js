@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
 import swal from 'sweetalert';
@@ -25,7 +25,7 @@ export function AppUtils() {
     }
   
     function destroyNote(section, id) {
-      if (section == 'general') {
+      if (section === 'general') {
         const newNotes = general.filter(singlenote => singlenote.id !== id);
         setGeneral(newNotes);
       }
@@ -33,21 +33,6 @@ export function AppUtils() {
         const newNotes = pinned.filter(singlenote => singlenote.id !== id);
         setPinned(newNotes);
       }
-    }
-
-    function translatePlain(section, id){
-      const headers={
-        'X-Naver-Client-Id' : 'JXgBev9YnhIrGCrQOXtw',
-        'X-Naver-Client-Secret' : '1nwuW7Sf4i'
-      }
-      
-      const translateApi = async () => {
-          const response = await axios.post(
-            '/api/v1/papago/n2mt', {source : 'ko', target : 'en', text : '안녕'}, {headers}
-          );
-          console.log(response.data); // 데이터는 response.data 안에 들어있습니다.
-        }
-      translateApi();
     }
 
     function moveSection(section, note_id){
@@ -76,7 +61,6 @@ export function AppUtils() {
     general,
     addNote,
     destroyNote,
-    moveSection,
-    translatePlain
+    moveSection
   };
 }
