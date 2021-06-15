@@ -7,7 +7,7 @@ export function Vocab() {
     const { vocabs, setVocabs,
         addVocab,
         deleteVocab,
-        translatePlain } = VocabUtils();
+        translatePlain} = VocabUtils();
     return (
         <div className="content-vocab">
             <table>

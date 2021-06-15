@@ -11,7 +11,6 @@ export function VocabUtils() {
       word: word_in,
       meaning: meaning_in
     };
-    vocab.meaning=translatePlain(vocab.meaning);
     const newVocabs = [...vocabs, vocab];
     setVocabs(newVocabs);
   };
@@ -23,22 +22,23 @@ export function VocabUtils() {
   };
 
   function translatePlain(){
+    const newVocabs = []
     const headers={
       'X-Naver-Client-Id' : 'JXgBev9YnhIrGCrQOXtw',
       'X-Naver-Client-Secret' : '1nwuW7Sf4i'
     }
-    var text;
-    const translateApi = async () => {
+    let text;
+    const translateApi = async (sentence) => {
         const response = await axios.post(
-          '/api/v1/papago/n2mt', {source : 'ko', target : 'en', text : '안녕'}, {headers}
-        );
-        text = JSON.stringify(response.data.message.result.translatedText);
-        console.log(text);
+          '/api/v1/papago/n2mt', {source : 'ko', target : 'en', text : sentence}, {headers}
+        ).then((response)=>{text=response.data.message.result.translatedText;});
         return text
       }
-    //const newVocabs= [...vocabs];
-    //console.log(newVocabs);
-    translateApi().then();
+    //vocabs.map((vocab)=>{newVocabs.push(translateApi(vocab.word).resolve())});
+    vocabs.map((vocab) => {translateApi(vocab.word).then((text)=>{vocab.meaning=text})
+  })
+    setVocabs(vocabs);
+    console.log(vocabs);
   }
 
   return {
