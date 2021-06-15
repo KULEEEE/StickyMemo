@@ -1,11 +1,19 @@
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 export function AppUtils() {
-    const [pinned, setPinned] = useState([]);
-    const [general, setGeneral] = useState([]);
-
+    const [pinned, setPinned] = useState([
+      {id:uuid(),notetype:'plain'},
+      {id:uuid(),notetype:'plain'},
+      {id:uuid(),notetype:'plain'}
+    ]);
+    const [general, setGeneral] = useState([
+      {id:uuid(),notetype:'plain'},
+      {id:uuid(),notetype:'plain'},
+      {id:uuid(),notetype:'plain'}
+    ]);
   
     function addNote(ntype){
       const single_note = {
@@ -27,7 +35,7 @@ export function AppUtils() {
       }
     }
 
-    function translatePlain(){
+    function translatePlain(section, id){
       const headers={
         'X-Naver-Client-Id' : 'JXgBev9YnhIrGCrQOXtw',
         'X-Naver-Client-Secret' : '1nwuW7Sf4i'
@@ -47,6 +55,10 @@ export function AppUtils() {
       var newGeneral=[];
 
       if (section==='general'){
+        if(pinned.length > 4){
+          swal("메모는 최대 4개까지 즐겨찾기할 수 있습니다.");
+          return;
+        }
         newPinned = [...pinned, ...general.filter(singlenote => singlenote.id === note_id)]
         newGeneral = general.filter(singlenote => singlenote.id !== note_id);
       }
