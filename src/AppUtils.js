@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
 import swal from 'sweetalert';
@@ -25,7 +25,7 @@ export function AppUtils() {
     }
   
     function destroyNote(section, id) {
-      if (section == 'general') {
+      if (section === 'general') {
         const newNotes = general.filter(singlenote => singlenote.id !== id);
         setGeneral(newNotes);
       }

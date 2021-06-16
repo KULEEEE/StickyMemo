@@ -7,12 +7,13 @@ export function Todo() {
             addTodo,
             deleteTodo} = TodoUtils();
     return (
-        <div>
+        <div className="content-todo">
             <TodoHeader addTodo={addTodo} />
             <TodoList todos={todos} deleteTodo={deleteTodo} />
         </div>
     );
 }
+
 function TodoHeader({ addTodo }) {
   const [value, setValue] = useState('');
 

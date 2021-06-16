@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { Todo } from './Todo';
 import { Plain } from './Plain';
-import { v4 as uuid } from 'uuid';
+import { Vocab } from "./Vocab";
 import pin from './pin.png';
 import lang from './lang.png';
+import { ExpenseNote } from './ExpenseNote';
 
-export function SingleNote({ id, section, notetype, destroyNote, moveSection, translatePlain}) {
-  const today = new Date
+
+export function SingleNote({ id, section, notetype, destroyNote, moveSection, translatePlain }) {
+  const today = new Date();
   let dates = useState(today.toLocaleString());
+
   return (
     <div className="single-note">
       <div className="note-toolbar">
-        <button className='pin'
-                onClick= {()=>moveSection(section, id)}
-                >
+        <button className='pin' 
+                onClick= {()=>moveSection(section, id)}>
           <img src={pin} alt='pinIcon' className='pinIcon' />
         </button>
         <button className='lang'
@@ -35,18 +37,22 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection, tr
 function NoteContent({ notetype }) {
   const ntype = notetype;
   if (ntype === 'todo') {
-    return (
-      <div className="content-todo">
-        <Todo />
-      </div>
-    );
+    return (<Todo />);
   }
-  else {
+  else if (ntype === 'plain') {
     return (
       <div className="content-plain">
         <Plain />
       </div>
     );
   }
+  else if (ntype === 'vocab') {
+    return (<Vocab />)
+  }
+
+  else if (ntype === 'expense'){
+    return(<ExpenseNote />)
+  }
 }
+
 
