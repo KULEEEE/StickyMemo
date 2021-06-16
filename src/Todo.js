@@ -86,9 +86,9 @@ function TodoItem({ todo, deleteTodo, todoarr, data }) {
         type="checkbox"
         checked={status === 'complete'}
         onChange={() => toggleStatus(status)} />
-      <label>{todo.task}</label>
+      <label class="todo-label">{todo.task}</label>
       <button
-        className='destroy'
+        className='todo-delete'
         onClick={() => deleteTodo(id)} />
     </li>
   );
