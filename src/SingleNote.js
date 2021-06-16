@@ -9,6 +9,10 @@ import { ExpenseNote } from './ExpenseNote';
 export function SingleNote({ id, section, notetype, destroyNote, moveSection, translatePlain }) {
   const today = new Date();
   let dates = useState(today.toLocaleString());
+  const data = new Object();
+  data.noteid = id;
+  data.section = section;
+  data.date = dates;
 
   return (
     <div className="single-note">
@@ -20,7 +24,7 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection, tr
         <button className='lang'
                 onClick={() =>translatePlain(section, id)}><img src='' alt='langIcon' /></button>
       </div>
-      <NoteContent notetype={notetype} />
+      <NoteContent notetype={notetype} data={data} />
       <div className="destroy">
         <button type="button" className="btn btn-light btn-sm" 
                 onClick={() => destroyNote(section, id)}>메모 삭제</button>
@@ -30,24 +34,28 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection, tr
   );
 }
 
-function NoteContent({ notetype }) {
+function NoteContent({ notetype, data }) {
   const ntype = notetype;
   if (ntype === 'todo') {
-    return (<Todo />);
+    data.type = 'todo';
+    return (<Todo data = {data} />);
   }
   else if (ntype === 'plain') {
+    data.type = 'plain';
     return (
       <div className="content-plain">
-        <Plain />
+        <Plain data = {data}/>
       </div>
     );
   }
   else if (ntype === 'vocab') {
-    return (<Vocab />)
+    data.type = 'vocab';
+    return (<Vocab data = {data}/>)
   }
 
   else if (ntype === 'expense'){
-    return(<ExpenseNote />)
+    data.type = 'expense'
+    return(<ExpenseNote data = {data}/>)
   }
 }
 

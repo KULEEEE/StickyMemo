@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { ExpenseUtils } from './ExpenseUtils';
+import {Getjson, Setjson} from './Makejson';
 
-export function ExpenseNote() {
+export function ExpenseNote({data}) {
   const { expenses, setExpenses,
     total, setTotal,
     addExpense,
     destroyExpense,
     updateExpense,
     updateTotal } = ExpenseUtils();
+  const expensearr = new Array();
+  data.total = total;
 
   return (
     <div className="content-expense">
@@ -15,7 +18,7 @@ export function ExpenseNote() {
         <tbody>
           <ExpenseHeader expenses={expenses} addExpense={addExpense} setTotal={setTotal} />
           {expenses.map(expense => (
-            <ExpenseItem key={expense.id} expense={expense} updateExpense={updateExpense} setTotal={setTotal} destroyExpense={destroyExpense} />
+            <ExpenseItem key={expense.id} expense={expense} updateExpense={updateExpense} setTotal={setTotal} destroyExpense={destroyExpense} expensearr={expensearr} data={data}/>
           ))}
           <ExpenseFooter total={total} />
         </tbody>
@@ -87,27 +90,102 @@ function ExpenseHeader({ addExpense }) {
 
 }
 
-function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense}) {
+function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense, expensearr, data}) {
   var new_val = expense;
+  const expenseobj = new Object();
+
+  expenseobj.expenseid = expense.id;
+  expenseobj.expensedate = expense.date;
+  expenseobj.expensetype = expense.type;
+  expenseobj.expenseplace = expense.place;
+  expenseobj.expensemoney = expense.money;
+  expensearr.push(expenseobj);
+  const uniquearr = expensearr.reduceRight((prev, now) => {
+    if (!prev.some(obj => obj.expenseid === now.expenseid )) {
+      prev.push(now);
+    }
+    return prev;
+  }, []);
+  const reverse = uniquearr.reverse();
+  data.arr = reverse;
+  Setjson(data);
+  console.log(Getjson());
+
 
   const onDateChange = (event) => {
     new_val.date = event.target.value;
     updateExpense(expense.id, new_val);
+    expenseobj.expensedate = event.target.value;
+    expenseobj.expensetype = expense.type;
+    expenseobj.expenseplace = expense.place;
+    expenseobj.expensemoney = expense.money;
+    expensearr.push(expenseobj);
+    const uniquearr = expensearr.reduceRight((prev, now) => {
+      if (!prev.some(obj => obj.expenseid === now.expenseid )) {
+        prev.push(now);
+      }
+      return prev;
+    }, []);
+    const reverse = uniquearr.reverse();
+    data.arr = reverse;
+    Setjson(data);
   };
   
   const onTypeChange = (event) => {
     new_val.type = event.target.value;
     updateExpense(expense.id, new_val);
+    expenseobj.expensedate = expense.date;
+    expenseobj.expensetype = event.target.value;
+    expenseobj.expenseplace = expense.place;
+    expenseobj.expensemoney = expense.money;
+    expensearr.push(expenseobj);
+    const uniquearr = expensearr.reduceRight((prev, now) => {
+      if (!prev.some(obj => obj.expenseid === now.expenseid )) {
+        prev.push(now);
+      }
+      return prev;
+    }, []);
+    const reverse = uniquearr.reverse();
+    data.arr = reverse;
+    Setjson(data);
   };
 
   const onPlaceChange = (event) => {
     new_val.place = event.target.value;
     updateExpense(expense.id, new_val);
+    expenseobj.expensedate = expense.date;
+    expenseobj.expensetype = expense.type;
+    expenseobj.expenseplace = event.target.value;
+    expenseobj.expensemoney = expense.money;
+    expensearr.push(expenseobj);
+    const uniquearr = expensearr.reduceRight((prev, now) => {
+      if (!prev.some(obj => obj.expenseid === now.expenseid )) {
+        prev.push(now);
+      }
+      return prev;
+    }, []);
+    const reverse = uniquearr.reverse();
+    data.arr = reverse;
+    Setjson(data);
   };
   
   const onMoneyChange = (event) => {
     new_val.money = event.target.value;
     updateExpense(expense.id, new_val);
+    expenseobj.expensedate = expense.date;
+    expenseobj.expensetype = expense.type;
+    expenseobj.expenseplace = expense.place;
+    expenseobj.expensemoney = event.target.value;
+    expensearr.push(expenseobj);
+    const uniquearr = expensearr.reduceRight((prev, now) => {
+      if (!prev.some(obj => obj.expenseid === now.expenseid )) {
+        prev.push(now);
+      }
+      return prev;
+    }, []);
+    const reverse = uniquearr.reverse();
+    data.arr = reverse;
+    Setjson(data);
   };
 
   return (
@@ -149,3 +227,17 @@ function ExpenseFooter({ total }) {
   );
 
 }
+/*JSON
+arr{
+  expensedate
+  expenseid
+  expensemoney
+  expenseplace
+  expensetype
+}
+date
+noteid
+section
+total
+type
+*/
