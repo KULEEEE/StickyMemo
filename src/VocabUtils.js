@@ -5,14 +5,20 @@ import axios from 'axios';
 export function VocabUtils() {
   const [vocabs, setVocabs] = useState([]);
 
-  function addVocab(word_in, meaning_in) {
-    const vocab = {
+  const addVocab = async (word_in) => {
+
+    const newVocabs = vocabs.map((voc) => {  
+      const tempVocabs = {...voc}
+      return tempVocabs
+    })    
+
+    const meaning = await translatePlain(word_in)
+    newVocabs.push({
       id: uuid(),
       word: word_in,
-      meaning: meaning_in
-    };
-    const newVocabs = [...vocabs, vocab];
-    setVocabs(newVocabs);
+      meaning: meaning
+    })
+    setVocabs(newVocabs)
   };
 
   function deleteVocab(id) {
@@ -21,25 +27,24 @@ export function VocabUtils() {
     setVocabs(newVocabs);
   };
 
-  function translatePlain(){
-    let newVocabs = [...vocabs];
+  const translatePlain = async (sentence) => {
 
     const headers={
       'X-Naver-Client-Id' : 'JXgBev9YnhIrGCrQOXtw',
       'X-Naver-Client-Secret' : '1nwuW7Sf4i'
     }
-    let text;
-    const translateApi = async (sentence) => {
-        const response = await axios.post(
-          '/api/v1/papago/n2mt', {source : 'ko', target : 'en', text : sentence}, {headers}
-        ).then((response)=>{text=response.data.message.result.translatedText;});
-        return text
-      }
-    //vocabs.map((vocab)=>{newVocabs.push(translateApi(vocab.word).resolve())});
-    newVocabs.map((voc) => {translateApi(voc.word).then((text)=>{voc.meaning=text})
-  })
-    console.log(newVocabs);
-    setVocabs(newVocabs);
+
+    try {
+      const response = await axios.post(
+        '/api/v1/papago/n2mt', {source : 'ko', target : 'en', text : sentence}, {headers}
+      )
+      
+      return response.data.message.result.translatedText
+      
+    } catch (err) {
+      console.log(err)
+      return 'error'
+    }
   };
 
   return {
