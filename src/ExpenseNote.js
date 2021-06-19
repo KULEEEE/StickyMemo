@@ -9,7 +9,7 @@ export function ExpenseNote({data}) {
     destroyExpense,
     updateExpense,
     updateTotal } = ExpenseUtils();
-  const expensearr = new Array();
+  const expensearr = [];
   data.total = total;
 
   return (

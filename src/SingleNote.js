@@ -10,7 +10,7 @@ import { ExpenseNote } from './ExpenseNote';
 export function SingleNote({ id, section, notetype, destroyNote, moveSection, translatePlain }) {
   const today = new Date();
   let dates = useState(today.toLocaleString());
-  const data = new Object();
+  const data = {};
   data.noteid = id;
   data.section = section;
   data.date = dates;

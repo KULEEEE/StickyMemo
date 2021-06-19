@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
 import swal from 'sweetalert';
+import {Deletejson} from './Makejson';
 
 export function AppUtils() {
     const [pinned, setPinned] = useState([
@@ -25,6 +26,7 @@ export function AppUtils() {
     }
   
     function destroyNote(section, id) {
+      Deletejson(id);
       if (section === 'general') {
         const newNotes = general.filter(singlenote => singlenote.id !== id);
         setGeneral(newNotes);

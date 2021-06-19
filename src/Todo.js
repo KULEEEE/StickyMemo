@@ -62,7 +62,7 @@ function TodoItem({ todo, deleteTodo, todoarr, data }) {
 
   todoobj.todoid = id;
   todoobj.value = task;
-  status === 'complete' ? todoobj.state = 'complete' : todoobj.state = 'incomplete';
+  todoobj.state = status === 'complete' ? 'complete' : 'incomplete';
   todoarr.push(todoobj);
   const uniquearr = todoarr.reduceRight((prev, now) => {
     if (!prev.some(obj => obj.todoid === now.todoid )) {
@@ -74,7 +74,6 @@ function TodoItem({ todo, deleteTodo, todoarr, data }) {
   data.arr = reverse;
   Setjson(data);
   console.log(Getjson());
-
   function toggleStatus(status) {
     status === 'complete' ? setStatus('incomplete') : setStatus('complete');
   }
