@@ -28,9 +28,6 @@ function VocabHeader({ addVocab }) {
     const onWordChange = (event) => {
         setWord(event.target.value);
     };
-    const onMeaningChange = (event) => {
-        setMeaning(event.target.value);
-    };
 
     const submitVocab = (event) => {
         if (event.key !== 'Enter')
@@ -42,17 +39,12 @@ function VocabHeader({ addVocab }) {
 
     return (
         <tr className='vocab-header'>
-            <td>
+            <td colSpan='2'>
                 <input placeholder='word'
                     value={word}
                     onChange={onWordChange}
+                    onKeyUp={submitVocab}
                     autoFocus />
-            </td>
-            <td>
-                <input placeholder='meaning'
-                    value={meaning}
-                    onChange={onMeaningChange}
-                    onKeyUp={submitVocab} />
             </td>
         </tr>
     );
