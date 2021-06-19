@@ -5,6 +5,7 @@ export function ExpenseUtils() {
   const [expenses, setExpenses] = useState([]);
   const [total, setTotal] = useState(0);
 
+  
   function addExpense(date_in, type_in, place_in, money_in) {
     const expense = {
       id: uuid(),
@@ -52,7 +53,13 @@ export function ExpenseUtils() {
     newExpenses.sort((a, b) => { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
     
 
+<<<<<<< HEAD
     setExpenses(newExpenses);
+=======
+    setExpenses(newExpenses);    
+    console.log(expenses);
+    // console.log(newExpenses);
+>>>>>>> 344e78689c2f4b4a70aeec5054f6b44042bffe80
     updateTotal(newExpenses, setTotal);
   }
 

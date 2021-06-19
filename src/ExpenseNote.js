@@ -88,6 +88,7 @@ function ExpenseHeader({ addExpense }) {
 }
 
 function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense}) {
+  console.log(expense.date)
   var new_val = expense;
 
   const onDateChange = (event) => {

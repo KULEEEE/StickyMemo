@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 import { VocabUtils } from './VocabUtils';
 
 
-
+//<button className='lang' onClick={() =>translatePlain()}><img src='' alt='langIcon' /></button>
 export function Vocab() {
     const { vocabs, setVocabs,
         addVocab,
-        deleteVocab } = VocabUtils();
+        deleteVocab,
+        translatePlain} = VocabUtils();
     return (
         <div className="content-vocab">
             <table>
                 <tbody>
                     <VocabHeader addVocab={addVocab} />
                     {vocabs.map(vocab => (
-                        <VocabItem key={vocab.id} vocab={vocab} deleteVocab={deleteVocab} />
+                        <VocabItem key={vocab.id} vocab={vocab} deleteVocab={deleteVocab} translatePlain={translatePlain}/>
                     ))}
                 </tbody>
             </table>
@@ -46,32 +47,41 @@ function VocabHeader({ addVocab }) {
                     onKeyUp={submitVocab}
                     autoFocus />
             </td>
+<<<<<<< HEAD
+=======
+            <td>
+                <input placeholder='meaning'
+                    value={meaning}
+                    onChange={onMeaningChange}
+                    />
+            </td>
+>>>>>>> 344e78689c2f4b4a70aeec5054f6b44042bffe80
         </tr>
     );
 
 }
 
 function VocabItem({ vocab, deleteVocab }) {
-    const [word, setWord] = useState(vocab.word);
-    const [meaning, setMeaning] = useState(vocab.meaning);
+    //const [word, setWord] = useState(vocab.word);
+    //const [meaning, setMeaning] = useState(vocab.meaning);
 
     const onWordChange = (event) => {
-        setWord(event.target.value);
+        //setWord(event.target.value);
     };
     const onMeaningChange = (event) => {
-        setMeaning(event.target.value);
+        //setMeaning(event.target.value);
     };
 
     return (
         <tr className='vocab-item'>
             <td>
                 <input placeholder='word'
-                    value={word}
+                    value={vocab.word}
                     onChange={onWordChange} />
             </td>
             <td>
                 <input placeholder='meaning'
-                    value={meaning}
+                    value={vocab.meaning}
                     onChange={onMeaningChange} />
             </td>
             <td><button>-</button></td>

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
-import axios from 'axios';
 import swal from 'sweetalert';
 
 export function AppUtils() {
@@ -35,28 +34,13 @@ export function AppUtils() {
       }
     }
 
-    function translatePlain(section, id){
-      const headers={
-        'X-Naver-Client-Id' : 'JXgBev9YnhIrGCrQOXtw',
-        'X-Naver-Client-Secret' : '1nwuW7Sf4i'
-      }
-      
-      const translateApi = async () => {
-          const response = await axios.post(
-            '/api/v1/papago/n2mt', {source : 'ko', target : 'en', text : '안녕'}, {headers}
-          );
-          console.log(response.data); // 데이터는 response.data 안에 들어있습니다.
-        }
-      translateApi();
-    }
-
     function moveSection(section, note_id){
       var newPinned=[];
       var newGeneral=[];
 
       if (section==='general'){
-        if(pinned.length > 4){
-          swal("메모는 최대 4개까지 즐겨찾기할 수 있습니다.");
+        if(pinned.length >= 5){
+          swal("메모는 최대 5개까지 즐겨찾기할 수 있습니다.");
           return;
         }
         newPinned = [...pinned, ...general.filter(singlenote => singlenote.id === note_id)]
@@ -76,7 +60,6 @@ export function AppUtils() {
     general,
     addNote,
     destroyNote,
-    moveSection,
-    translatePlain
+    moveSection
   };
 }
