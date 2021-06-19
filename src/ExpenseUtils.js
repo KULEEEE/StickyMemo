@@ -30,7 +30,7 @@ export function ExpenseUtils() {
   };
 
   const extractMoney = (expense) => {
-    if (expense.type == 'income')
+    if (expense.type === 'income')
       return Number(expense.money);
     else
       return -Number(expense.money);

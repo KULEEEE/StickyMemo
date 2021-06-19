@@ -47,12 +47,6 @@ function VocabHeader({ addVocab }) {
                     onKeyUp={submitVocab}
                     autoFocus />
             </td>
-            <td>
-                <input placeholder='meaning'
-                    value={meaning}
-                    // onChange={onMeaningChange}
-                    />
-            </td>
         </tr>
     );
 

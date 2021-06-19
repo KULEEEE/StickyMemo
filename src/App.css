@@ -40,6 +40,10 @@ section{
   overflow-y: scroll;
 }
 
+.plain-header{
+  background:  #27303D;
+}
+
 .default-note{
   padding : 6px;
 }
@@ -71,6 +75,7 @@ section{
 .date{
   position: absolute; 
   bottom: 5px; 
+  color: #F5DF4D;
 }
 
 .destroy{
