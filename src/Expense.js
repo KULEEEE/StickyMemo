@@ -38,6 +38,7 @@ function ExpenseHeader({ addExpense }) {
   const onPlaceChange = (event) => {
     setPlace(event.target.value);
   };
+  
   const onMoneyChange = (event) => {
     setMoney(event.target.value);
   };
@@ -71,7 +72,7 @@ function ExpenseHeader({ addExpense }) {
         </select>
       </td>
       <td>
-        <input placeholder='Money'
+        <input type='number' placeholder='Money'
           value={money}
           onChange={onMoneyChange}
           onKeyUp={submitExpense} />
@@ -92,7 +93,6 @@ function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense}) {
 
   const onDateChange = (event) => {
     new_val.date = event.target.value;
-
     updateExpense(expense.id, new_val);
   };
   
@@ -123,7 +123,7 @@ function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense}) {
         </select>
       </td>
       <td>
-        <input placeholder='Money' value={expense.money} onChange={onMoneyChange} />
+        <input placeholder='Money' type='number' value={expense.money} onChange={onMoneyChange} />
       </td>
       <td>
         <input placeholder='Place'

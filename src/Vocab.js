@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { VocabUtils } from './VocabUtils';
 
 
-//<button className='lang' onClick={() =>translatePlain()}><img src='' alt='langIcon' /></button>
 export function Vocab() {
     const { vocabs, setVocabs,
         addVocab,
         deleteVocab,
+        updateVocab,
         translatePlain} = VocabUtils();
     return (
         <div className="content-vocab">
@@ -14,7 +14,7 @@ export function Vocab() {
                 <tbody>
                     <VocabHeader addVocab={addVocab} />
                     {vocabs.map(vocab => (
-                        <VocabItem key={vocab.id} vocab={vocab} deleteVocab={deleteVocab} translatePlain={translatePlain}/>
+                        <VocabItem key={vocab.id} vocab={vocab} deleteVocab={deleteVocab} updateVocab={updateVocab}/>
                     ))}
                 </tbody>
             </table>
@@ -35,7 +35,6 @@ function VocabHeader({ addVocab }) {
             return;
         addVocab(word, meaning);
         setWord('');
-        setMeaning('');
     };
 
     return (
@@ -52,15 +51,16 @@ function VocabHeader({ addVocab }) {
 
 }
 
-function VocabItem({ vocab, deleteVocab }) {
-    //const [word, setWord] = useState(vocab.word);
-    //const [meaning, setMeaning] = useState(vocab.meaning);
+function VocabItem({ vocab, deleteVocab, updateVocab }) {
+    var new_val = vocab;
 
     const onWordChange = (event) => {
-        //setWord(event.target.value);
-    };
+        new_val.word = event.target.value;
+        updateVocab(vocab.id, new_val);
+    }
     const onMeaningChange = (event) => {
-        //setMeaning(event.target.value);
+        new_val.meaning = event.target.value;
+        updateVocab(vocab.id, new_val);
     };
 
     return (
@@ -75,7 +75,7 @@ function VocabItem({ vocab, deleteVocab }) {
                     value={vocab.meaning}
                     onChange={onMeaningChange} />
             </td>
-            <td><button>-</button></td>
+            <td><button onClick={() => deleteVocab(vocab.id)}>-</button></td>
         </tr>
     );
 
