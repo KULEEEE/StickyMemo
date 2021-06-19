@@ -30,7 +30,7 @@ export function ExpenseUtils() {
   };
 
   const extractMoney = (expense) => {
-    if (expense.type == 'income')
+    if (expense.type === 'income')
       return Number(expense.money);
     else
       return -Number(expense.money);
@@ -53,13 +53,7 @@ export function ExpenseUtils() {
     newExpenses.sort((a, b) => { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
     
 
-<<<<<<< HEAD
     setExpenses(newExpenses);
-=======
-    setExpenses(newExpenses);    
-    console.log(expenses);
-    // console.log(newExpenses);
->>>>>>> 344e78689c2f4b4a70aeec5054f6b44042bffe80
     updateTotal(newExpenses, setTotal);
   }
 
