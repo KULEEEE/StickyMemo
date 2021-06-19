@@ -12,7 +12,6 @@ export function Vocab() {
         <div className="content-vocab">
             <table>
                 <tbody>
-                    <button className='lang' onClick={() =>translatePlain()}><img src='' alt='langIcon' /></button>
                     <VocabHeader addVocab={addVocab} />
                     {vocabs.map(vocab => (
                         <VocabItem key={vocab.id} vocab={vocab} deleteVocab={deleteVocab} translatePlain={translatePlain}/>
@@ -48,13 +47,14 @@ function VocabHeader({ addVocab }) {
                 <input placeholder='word'
                     value={word}
                     onChange={onWordChange}
+                    onKeyUp={submitVocab}
                     autoFocus />
             </td>
             <td>
                 <input placeholder='meaning'
                     value={meaning}
                     onChange={onMeaningChange}
-                    onKeyUp={submitVocab} />
+                    />
             </td>
         </tr>
     );

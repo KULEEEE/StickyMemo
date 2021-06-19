@@ -36,7 +36,7 @@ export function VocabUtils() {
 
     try {
       const response = await axios.post(
-        '/api/v1/papago/n2mt', {source : 'ko', target : 'en', text : sentence}, {headers}
+        '/api/v1/papago/n2mt', {source : 'en', target : 'ko', text : sentence}, {headers}
       )
       
       return response.data.message.result.translatedText
