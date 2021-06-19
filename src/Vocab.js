@@ -62,26 +62,26 @@ function VocabHeader({ addVocab }) {
 }
 
 function VocabItem({ vocab, deleteVocab }) {
-    const [word, setWord] = useState(vocab.word);
-    const [meaning, setMeaning] = useState(vocab.meaning);
+    //const [word, setWord] = useState(vocab.word);
+    //const [meaning, setMeaning] = useState(vocab.meaning);
 
     const onWordChange = (event) => {
-        setWord(event.target.value);
+        //setWord(event.target.value);
     };
     const onMeaningChange = (event) => {
-        setMeaning(event.target.value);
+        //setMeaning(event.target.value);
     };
 
     return (
         <tr className='vocab-item'>
             <td>
                 <input placeholder='word'
-                    value={word}
+                    value={vocab.word}
                     onChange={onWordChange} />
             </td>
             <td>
                 <input placeholder='meaning'
-                    value={meaning}
+                    value={vocab.meaning}
                     onChange={onMeaningChange} />
             </td>
             <td><button>-</button></td>
