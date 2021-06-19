@@ -3,6 +3,7 @@ import { Todo } from './Todo';
 import { Plain } from './Plain';
 import { Vocab } from "./Vocab";
 import pin from './pin.png';
+import lang from './lang.png';
 import { ExpenseNote } from './ExpenseNote';
 
 
@@ -19,10 +20,13 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection, tr
         </button>
       </div>
       <NoteContent notetype={notetype} />
+      <div className="date">{dates}</div>
       <div className="destroy">
         <button type="button" className="btn btn-light btn-sm" 
-                onClick={() => destroyNote(section, id)}>메모 삭제</button>
-        {dates}
+          onClick={() => destroyNote(section, id)}>
+          {/* <img src='' alt='destroyIcon' /> */}
+          메모 삭제
+        </button>
       </div>
     </div>
   );
