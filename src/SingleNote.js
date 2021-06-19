@@ -3,8 +3,7 @@ import { Todo } from './Todo';
 import { Plain } from './Plain';
 import { Vocab } from "./Vocab";
 import pin from './pin.png';
-import lang from './lang.png';
-import { ExpenseNote } from './ExpenseNote';
+import { Expense } from './Expense';
 
 
 export function SingleNote({ id, section, notetype, destroyNote, moveSection, translatePlain }) {
@@ -49,7 +48,7 @@ function NoteContent({ notetype }) {
   }
 
   else if (ntype === 'expense'){
-    return(<ExpenseNote />)
+    return(<Expense />)
   }
 }
 

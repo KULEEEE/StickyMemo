@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ExpenseUtils } from './ExpenseUtils';
 
-export function ExpenseNote() {
+export function Expense() {
   const { expenses, setExpenses,
     total, setTotal,
     addExpense,
