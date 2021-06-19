@@ -18,8 +18,6 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection, tr
                 onClick= {()=>moveSection(section, id)}>
           <img src={pin} alt='pinIcon' className='pinIcon' />
         </button>
-        <button className='lang'
-                onClick={() =>translatePlain(section, id)}><img src={lang} alt='langIcon' className='langIcon'/></button>
       </div>
       <NoteContent notetype={notetype} />
       <div className="date">{dates}</div>
