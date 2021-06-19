@@ -53,9 +53,13 @@ export function ExpenseUtils() {
     newExpenses.sort((a, b) => { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
     
 
+<<<<<<< HEAD
+    setExpenses(newExpenses);
+=======
     setExpenses(newExpenses);    
     console.log(expenses);
     // console.log(newExpenses);
+>>>>>>> 344e78689c2f4b4a70aeec5054f6b44042bffe80
     updateTotal(newExpenses, setTotal);
   }
 
@@ -64,7 +68,6 @@ export function ExpenseUtils() {
     total, setTotal,
     addExpense,
     destroyExpense,
-    updateExpense,
-    updateTotal
+    updateExpense
   };
 }

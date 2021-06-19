@@ -6,8 +6,7 @@ export function ExpenseNote() {
     total, setTotal,
     addExpense,
     destroyExpense,
-    updateExpense,
-    updateTotal } = ExpenseUtils();
+    updateExpense } = ExpenseUtils();
 
   return (
     <div className="content-expense">
@@ -26,7 +25,7 @@ export function ExpenseNote() {
 
 function ExpenseHeader({ addExpense }) {
   const [date, setDate] = useState('2021-01-01'); // when
-  const [type, setType] = useState('income'); // income or expense
+  const [type, setType] = useState('income'); // income or expense, income is default
   const [place, setPlace] = useState(''); // where
   const [money, setMoney] = useState(''); // how much
 
@@ -49,6 +48,7 @@ function ExpenseHeader({ addExpense }) {
 
     addExpense(date, type, place, money);
 
+    // reset to default value
     setDate('2021-01-01');
     setType('income');
     setPlace('');
@@ -88,11 +88,11 @@ function ExpenseHeader({ addExpense }) {
 }
 
 function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense}) {
-  console.log(expense.date)
   var new_val = expense;
 
   const onDateChange = (event) => {
     new_val.date = event.target.value;
+
     updateExpense(expense.id, new_val);
   };
   
@@ -105,7 +105,7 @@ function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense}) {
     new_val.place = event.target.value;
     updateExpense(expense.id, new_val);
   };
-  
+
   const onMoneyChange = (event) => {
     new_val.money = event.target.value;
     updateExpense(expense.id, new_val);
@@ -114,10 +114,7 @@ function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense}) {
   return (
     <tr className='expense-header'>
       <td>
-        <input
-          type='date'
-          value={expense.date}
-          onChange={onDateChange} />
+        <input type='date' value={expense.date} onChange={onDateChange} />
       </td>
       <td>
         <select name="type" onChange={onTypeChange} value={expense.type}>
@@ -126,10 +123,7 @@ function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense}) {
         </select>
       </td>
       <td>
-        <input placeholder='Money'
-          value={expense.money}
-          onChange={onMoneyChange}
-          autoFocus />
+        <input placeholder='Money' value={expense.money} onChange={onMoneyChange} />
       </td>
       <td>
         <input placeholder='Place'
