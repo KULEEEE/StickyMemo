@@ -1,15 +1,16 @@
 import React, {useState} from 'react';
 import { v4 as uuid } from 'uuid';
+import {Getjson, Setjson} from './Makejson';
 
-export function Plain() {
+export function Plain({data}) {
     return (
         <div>
-            <PlainHeader/>
+            <PlainHeader data={data}/>
         </div>
     );
 }
 
-function PlainHeader() {
+function PlainHeader({data}) {
     const [value, setValue] = useState('');
     const [plain, setPlain] = useState('');
   
@@ -24,6 +25,9 @@ function PlainHeader() {
         };
         const newplain = plain;
         setPlain(newplain);
+        data.value = value;
+        Setjson(data);
+        console.log(Getjson());
     };
   
     return (
@@ -32,3 +36,10 @@ function PlainHeader() {
       </header>
     );
   }
+  /* JSON
+  date
+  noteid
+  section
+  type
+  value
+  */
