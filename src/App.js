@@ -17,17 +17,17 @@ function App() {
     
   return (
     <section className="App">
-       <header className="App-header"> 
+       {/* <header className="App-header"> 
          <div>Project Name</div>
-       </header>
+       </header> */}
 
       <section className="pinned-zone">
-        <header>Pinned zone</header>
+        <header>PINNED</header>
         {pinned.map(singlenote => (<SingleNote key = {singlenote.id} id = {singlenote.id} section='pinned' notetype={singlenote.notetype} destroyNote={destroyNote} moveSection={moveSection}/>))}
       </section>
 
       <section className="general-zone">
-        <header>General zone</header>
+        {/* <header>GENERAL</header> */}
         <DefaultNote addNote={addNote}/>
         {general.map(singlenote => (<SingleNote key = {singlenote.id} id = {singlenote.id} section='general' notetype={singlenote.notetype} destroyNote={destroyNote} moveSection={moveSection}/>))}
       </section>  

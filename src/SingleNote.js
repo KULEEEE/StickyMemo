@@ -27,8 +27,7 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection, tr
       <div className="destroy">
         <button type="button" className="btn btn-light btn-sm" 
           onClick={() => destroyNote(section, id)}>
-          {/* <img src='' alt='destroyIcon' /> */}
-          메모 삭제
+          삭제
         </button>
       </div>
     </div>
@@ -37,10 +36,7 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection, tr
 
 function NoteContent({ notetype, data }) {
   const ntype = notetype;
-  if (ntype === 'todo') {
-    data.type = 'todo';
-    return (<Todo data = {data} />);
-  }
+  if (ntype === 'todo') return (<Todo />);
   else if (ntype === 'plain') {
     data.type = 'plain';
     return (
@@ -49,15 +45,8 @@ function NoteContent({ notetype, data }) {
       </div>
     );
   }
-  else if (ntype === 'vocab') {
-    data.type = 'vocab';
-    return (<Vocab data = {data}/>)
-  }
-
-  else if (ntype === 'expense'){
-    data.type = 'expense'
-    return(<Expense data = {data}/>)
-  }
+  else if (ntype === 'vocab') return (<Vocab />);
+  else if (ntype === 'expense') return(<Expense />);
 }
 
 

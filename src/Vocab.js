@@ -4,10 +4,10 @@ import {Getjson, Setjson} from './Makejson';
 
 
 export function Vocab({data}) {            
-//<button className='lang' onClick={() =>translatePlain()}><img src='' alt='langIcon' /></button>
     const { vocabs, setVocabs,
         addVocab,
         deleteVocab,
+        updateVocab,
         translatePlain} = VocabUtils();
     const vocabarr = new Array();
     return (
@@ -16,7 +16,7 @@ export function Vocab({data}) {
                 <tbody>
                     <VocabHeader addVocab={addVocab} />
                     {vocabs.map(vocab => (
-                        <VocabItem key={vocab.id} vocab={vocab} deleteVocab={deleteVocab} translatePlain={translatePlain} vocabarr = {vocabarr} data={data}/>
+                        <VocabItem key={vocab.id} vocab={vocab} deleteVocab={deleteVocab} updateVocab={updateVocab} vocabarr = {vocabarr} data={data}/>
                     ))}
                 </tbody>
             </table>
@@ -37,13 +37,12 @@ function VocabHeader({ addVocab }) {
             return;
         addVocab(word, meaning);
         setWord('');
-        setMeaning('');
     };
 
     return (
         <tr className='vocab-header'>
             <td colSpan='2'>
-                <input placeholder='word'
+                <input placeholder='영어 단어'
                     value={word}
                     onChange={onWordChange}
                     onKeyUp={submitVocab}
@@ -54,10 +53,8 @@ function VocabHeader({ addVocab }) {
 
 }
 
-
-function VocabItem({ vocab, deleteVocab, vocabarr, data }) {
-    //const [word, setWord] = useState(vocab.word);
-    //const [meaning, setMeaning] = useState(vocab.meaning);
+function VocabItem({ vocab, deleteVocab, updateVocab, vocabarr, data }) {
+    var new_val = vocab;
     const vocabobj = new Object();
 
     vocabobj.vocabid = vocab.id;
@@ -76,10 +73,12 @@ function VocabItem({ vocab, deleteVocab, vocabarr, data }) {
       console.log(Getjson());
 
     const onWordChange = (event) => {
-        //setWord(event.target.value);
-    };
+        new_val.word = event.target.value;
+        updateVocab(vocab.id, new_val);
+    }
     const onMeaningChange = (event) => {
-        //setMeaning(event.target.value);
+        new_val.meaning = event.target.value;
+        updateVocab(vocab.id, new_val);
     };
 
     return (
@@ -94,7 +93,7 @@ function VocabItem({ vocab, deleteVocab, vocabarr, data }) {
                     value={vocab.meaning}
                     onChange={onMeaningChange} />
             </td>
-            <td><button>-</button></td>
+            <td><button onClick={() => deleteVocab(vocab.id)}>-</button></td>
         </tr>
     );
 

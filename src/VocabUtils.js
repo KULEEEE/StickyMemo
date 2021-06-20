@@ -27,6 +27,17 @@ export function VocabUtils() {
     setVocabs(newVocabs);
   };
 
+  function updateVocab(id, new_val){
+    const target = vocabs.filter(vocab => vocab.id === id);
+    const target_idx = vocabs.indexOf(target[0]);
+
+    var newVocabs = [...vocabs];
+    newVocabs[target_idx].word = new_val.word;
+    newVocabs[target_idx].meaning = new_val.meaning;    
+
+    setVocabs(newVocabs);
+  }
+
   const translatePlain = async (sentence) => {
 
     const headers={
@@ -51,6 +62,7 @@ export function VocabUtils() {
     vocabs, setVocabs,
     addVocab,
     deleteVocab,
+    updateVocab, 
     translatePlain
   };
 }
