@@ -34,7 +34,7 @@ function TodoHeader({ addTodo }) {
     <header className='todo-header'>
       <input
         className='todo-adder'
-        placeholder='Write your task here'
+        placeholder='무엇을 해야하나요?'
         value={value}
         onChange={handleOnChange}
         onKeyUp={submitTodo}
