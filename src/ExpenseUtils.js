@@ -5,6 +5,7 @@ export function ExpenseUtils() {
   const [expenses, setExpenses] = useState([]);
   const [total, setTotal] = useState(0);
 
+  
   function addExpense(date_in, type_in, place_in, money_in) {
     const expense = {
       id: uuid(),
@@ -29,7 +30,7 @@ export function ExpenseUtils() {
   };
 
   const extractMoney = (expense) => {
-    if (expense.type == 'income')
+    if (expense.type === 'income')
       return Number(expense.money);
     else
       return -Number(expense.money);
@@ -44,7 +45,7 @@ export function ExpenseUtils() {
     const target = expenses.filter(expense => expense.id === id);
     const target_idx = expenses.indexOf(target[0]);
 
-    var newExpenses = expenses;
+    var newExpenses = [...expenses];
     newExpenses[target_idx].date = new_val.date;
     newExpenses[target_idx].type = new_val.type;
     newExpenses[target_idx].money = new_val.money;
@@ -53,7 +54,6 @@ export function ExpenseUtils() {
     
 
     setExpenses(newExpenses);
-    console.log(expenses);
     updateTotal(newExpenses, setTotal);
   }
 
@@ -62,7 +62,6 @@ export function ExpenseUtils() {
     total, setTotal,
     addExpense,
     destroyExpense,
-    updateExpense,
-    updateTotal
+    updateExpense
   };
 }

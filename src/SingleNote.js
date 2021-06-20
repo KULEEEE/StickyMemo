@@ -3,8 +3,7 @@ import { Todo } from './Todo';
 import { Plain } from './Plain';
 import { Vocab } from "./Vocab";
 import pin from './pin.png';
-import lang from './lang.png';
-import { ExpenseNote } from './ExpenseNote';
+import { Expense } from './Expense';
 
 
 export function SingleNote({ id, section, notetype, destroyNote, moveSection, translatePlain }) {
@@ -22,13 +21,11 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection, tr
                 onClick= {()=>moveSection(section, id)}>
           <img src={pin} alt='pinIcon' className='pinIcon' />
         </button>
-        <button className='lang'
-                onClick={() =>translatePlain(section, id)}><img src={lang} alt='langIcon' className='langIcon'/></button>
       </div>
       <NoteContent notetype={notetype} data={data} />
       <div className="date">{dates}</div>
       <div className="destroy">
-        <button type="button" class="btn btn-light btn-sm" 
+        <button type="button" className="btn btn-light btn-sm" 
           onClick={() => destroyNote(section, id)}>
           {/* <img src='' alt='destroyIcon' /> */}
           메모 삭제
@@ -59,7 +56,7 @@ function NoteContent({ notetype, data }) {
 
   else if (ntype === 'expense'){
     data.type = 'expense'
-    return(<ExpenseNote data = {data}/>)
+    return(<Expense data = {data}/>)
   }
 }
 

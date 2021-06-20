@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import { ExpenseUtils } from './ExpenseUtils';
 import {Getjson, Setjson} from './Makejson';
 
-export function ExpenseNote({data}) {
+export function Expense({data}) {
   const { expenses, setExpenses,
     total, setTotal,
     addExpense,
     destroyExpense,
-    updateExpense,
-    updateTotal } = ExpenseUtils();
+    updateExpense} = ExpenseUtils();
   const expensearr = [];
   data.total = total;
 
@@ -29,7 +28,7 @@ export function ExpenseNote({data}) {
 
 function ExpenseHeader({ addExpense }) {
   const [date, setDate] = useState('2021-01-01'); // when
-  const [type, setType] = useState('income'); // income or expense
+  const [type, setType] = useState('income'); // income or expense, income is default
   const [place, setPlace] = useState(''); // where
   const [money, setMoney] = useState(''); // how much
 
@@ -52,6 +51,7 @@ function ExpenseHeader({ addExpense }) {
 
     addExpense(date, type, place, money);
 
+    // reset to default value
     setDate('2021-01-01');
     setType('income');
     setPlace('');
@@ -114,6 +114,7 @@ function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense, expense
 
   const onDateChange = (event) => {
     new_val.date = event.target.value;
+
     updateExpense(expense.id, new_val);
     expenseobj.expensedate = event.target.value;
     expenseobj.expensetype = expense.type;
@@ -168,7 +169,7 @@ function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense, expense
     data.arr = reverse;
     Setjson(data);
   };
-  
+
   const onMoneyChange = (event) => {
     new_val.money = event.target.value;
     updateExpense(expense.id, new_val);
@@ -191,10 +192,7 @@ function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense, expense
   return (
     <tr className='expense-header'>
       <td>
-        <input
-          type='date'
-          value={expense.date}
-          onChange={onDateChange} />
+        <input type='date' value={expense.date} onChange={onDateChange} />
       </td>
       <td>
         <select name="type" onChange={onTypeChange} value={expense.type}>
@@ -203,10 +201,7 @@ function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense, expense
         </select>
       </td>
       <td>
-        <input placeholder='Money'
-          value={expense.money}
-          onChange={onMoneyChange}
-          autoFocus />
+        <input placeholder='Money' value={expense.money} onChange={onMoneyChange} />
       </td>
       <td>
         <input placeholder='Place'
