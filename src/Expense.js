@@ -11,13 +11,16 @@ export function Expense() {
   return (
     <div className="content-expense">
       <table>
+        <thead>
+        <ExpenseHeader expenses={expenses} addExpense={addExpense} setTotal={setTotal} />
+        </thead>
         <tbody>
-          <ExpenseHeader expenses={expenses} addExpense={addExpense} setTotal={setTotal} />
           {expenses.map(expense => (
             <ExpenseItem key={expense.id} expense={expense} updateExpense={updateExpense} setTotal={setTotal} destroyExpense={destroyExpense} />
           ))}
-          <ExpenseFooter total={total} />
         </tbody>
+        <ExpenseFooter total={total} />
+        
       </table>
     </div>
   );
@@ -57,32 +60,32 @@ function ExpenseHeader({ addExpense }) {
   };
 
   return (
-    <tr className='expense-header'>
-      <td>
+    <tr className='expense-header' scope='row'>
+      <th>
         <input
           type='date'
           value={date}
           onChange={onDateChange}
           autoFocus />
-      </td>
-      <td>
+      </th>
+      <th>
         <select name="type" onChange={onTypeChange} defaultValue="">
           <option value="income">수입</option>
           <option value="expense">지출</option>
         </select>
-      </td>
-      <td>
-        <input type='number' placeholder='Money'
+      </th>
+      <th>
+        <input type='number' placeholder='금액'
           value={money}
           onChange={onMoneyChange}
           onKeyUp={submitExpense} />
-      </td>
-      <td>
-        <input placeholder='Place'
+      </th>
+      <th>
+        <input placeholder='무엇을 했나요?'
           value={place}
           onChange={onPlaceChange}
           onKeyUp={submitExpense} />
-      </td>
+      </th>
     </tr>
   );
 
@@ -112,7 +115,7 @@ function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense}) {
   };
 
   return (
-    <tr className='expense-header'>
+    <tr className='expense-header' scope='row'>
       <td>
         <input type='date' value={expense.date} onChange={onDateChange} />
       </td>
@@ -123,10 +126,10 @@ function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense}) {
         </select>
       </td>
       <td>
-        <input placeholder='Money' type='number' value={expense.money} onChange={onMoneyChange} />
+        <input placeholder='금액' type='number' value={expense.money} onChange={onMoneyChange} />
       </td>
       <td>
-        <input placeholder='Place'
+        <input placeholder='무엇을 했나요?'
           value={expense.place}
           onChange={onPlaceChange} />
       </td>
@@ -137,10 +140,10 @@ function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense}) {
 }
 function ExpenseFooter({ total }) {
   return (
-    <tr className='expense-footer'>
+    <tfoot className='expense-footer'>
       <td colSpan="2">총계</td>
       <td colSpan="2">{total}</td>
-    </tr>
+    </tfoot>
   );
 
 }

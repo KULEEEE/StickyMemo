@@ -40,7 +40,7 @@ function VocabHeader({ addVocab }) {
     return (
         <tr className='vocab-header'>
             <td colSpan='2'>
-                <input placeholder='word'
+                <input placeholder='영어 단어'
                     value={word}
                     onChange={onWordChange}
                     onKeyUp={submitVocab}

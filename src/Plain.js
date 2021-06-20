@@ -28,7 +28,7 @@ function PlainHeader() {
   
     return (
       <header className='plain-header'>
-      <textarea name="plain-adder" rows="8" cols="35" placeholder='Write here' value={value} onChange={handleOnChange} onKeyUp={submitPlain} autoFocus></textarea>
+      <textarea name="plain-adder" rows="8" cols="35" placeholder='메모를 작성하세요' value={value} onChange={handleOnChange} onKeyUp={submitPlain} autoFocus></textarea>
       </header>
     );
   }
