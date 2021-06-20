@@ -23,7 +23,7 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection, tr
       <div className="destroy">
         <button type="button" className="btn btn-light btn-sm" 
           onClick={() => destroyNote(section, id)}>
-          메모 삭제
+          삭제
         </button>
       </div>
     </div>
