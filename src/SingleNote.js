@@ -36,7 +36,10 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection, tr
 
 function NoteContent({ notetype, data }) {
   const ntype = notetype;
-  if (ntype === 'todo') return (<Todo />);
+  if (ntype === 'todo') {
+    data.type = 'todo';
+    return (<Todo data = {data} />);
+  }
   else if (ntype === 'plain') {
     data.type = 'plain';
     return (
@@ -45,8 +48,14 @@ function NoteContent({ notetype, data }) {
       </div>
     );
   }
-  else if (ntype === 'vocab') return (<Vocab />);
-  else if (ntype === 'expense') return(<Expense />);
-}
+  else if (ntype === 'vocab') {
+    data.type = 'vocab';
+    return (<Vocab data = {data}/>)
+  }
 
+  else if (ntype === 'expense'){
+    data.type = 'expense'
+    return(<Expense data = {data}/>)
+  }
+}
 
