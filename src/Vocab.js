@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { VocabUtils } from './VocabUtils';
 import {Getjson, Setjson} from './Makejson';
+import delete_icon from './delete-icon.png';
 
 
 export function Vocab({data}) {            
@@ -97,7 +98,11 @@ function VocabItem({ vocab, deleteVocab, vocabarr, data }) {
                     value={vocab.meaning}
                     onChange={onMeaningChange} />
             </td>
-            <td><button>-</button></td>
+            <td>
+                <button className = "vocab-delete">
+                    <img src={delete_icon} alt='delete' className='deleteIcon'/>
+                </button>
+            </td>
         </tr>
     );
 
