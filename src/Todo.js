@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { TodoUtils } from './TodoUtils';
 import delete_icon from './delete-icon.png';
+import {Getjson, Setjson} from './Makejson';
 
-export function Todo() {
+export function Todo({data}) {
     const { todos, 
             setTodos,
             addTodo,
@@ -10,7 +11,7 @@ export function Todo() {
     return (
         <div className="content-todo">
             <TodoHeader addTodo={addTodo} />
-            <TodoList todos={todos} deleteTodo={deleteTodo} />
+            <TodoList todos={todos} deleteTodo={deleteTodo} data={data} />
         </div>
     );
 }
@@ -41,21 +42,39 @@ function TodoHeader({ addTodo }) {
     </header>
   );
 }
-function TodoList({ todos = [], deleteTodo }) {
+function TodoList({ todos = [], deleteTodo, data }) {
+  const todoarr = new Array();
   return (
     <ul className="todo-list">
       {todos.map(todo => (
         <TodoItem
           key={todo.id}
           todo={todo}
-          deleteTodo={deleteTodo} />))}
+          deleteTodo={deleteTodo}
+          todoarr = {todoarr}
+          data = {data} />))}
     </ul>
   );
 }
-function TodoItem({ todo, deleteTodo }) {
+function TodoItem({ todo, deleteTodo, todoarr, data }) {
   const [status, setStatus] = useState('');
   const { id, task } = todo;
+  const todoobj = new Object();
 
+  todoobj.todoid = id;
+  todoobj.value = task;
+  todoobj.state = status === 'complete' ? 'complete' : 'incomplete';
+  todoarr.push(todoobj);
+  const uniquearr = todoarr.reduceRight((prev, now) => {
+    if (!prev.some(obj => obj.todoid === now.todoid )) {
+      prev.push(now); 
+    }
+    return prev;
+  }, []);
+  const reverse = uniquearr.reverse();
+  data.arr = reverse;
+  Setjson(data);
+  console.log(Getjson());
   function toggleStatus(status) {
     status === 'complete' ? setStatus('incomplete') : setStatus('complete');
   }
@@ -77,3 +96,14 @@ function TodoItem({ todo, deleteTodo }) {
     </li>
   );
 }
+/* JSON
+arr{
+  state
+  todoid
+  value
+}
+date
+noteid
+section
+type
+*/

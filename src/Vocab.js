@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import { VocabUtils } from './VocabUtils';
+import {Getjson, Setjson} from './Makejson';
 
 
+export function Vocab({data}) {            
 //<button className='lang' onClick={() =>translatePlain()}><img src='' alt='langIcon' /></button>
-export function Vocab() {
     const { vocabs, setVocabs,
         addVocab,
         deleteVocab,
         translatePlain} = VocabUtils();
+    const vocabarr = new Array();
     return (
         <div className="content-vocab">
             <table>
                 <tbody>
                     <VocabHeader addVocab={addVocab} />
                     {vocabs.map(vocab => (
-                        <VocabItem key={vocab.id} vocab={vocab} deleteVocab={deleteVocab} translatePlain={translatePlain}/>
+                        <VocabItem key={vocab.id} vocab={vocab} deleteVocab={deleteVocab} translatePlain={translatePlain} vocabarr = {vocabarr} data={data}/>
                     ))}
                 </tbody>
             </table>
@@ -53,9 +55,26 @@ function VocabHeader({ addVocab }) {
 
 }
 
-function VocabItem({ vocab, deleteVocab }) {
+
+function VocabItem({ vocab, deleteVocab, vocabarr, data }) {
     //const [word, setWord] = useState(vocab.word);
     //const [meaning, setMeaning] = useState(vocab.meaning);
+    const vocabobj = new Object();
+
+    vocabobj.vocabid = vocab.id;
+    vocabobj.word = vocab.word;
+    vocabobj.meaning = vocab.meaning;
+    vocabarr.push(vocabobj);
+    const uniquearr = vocabarr.reduceRight((prev, now) => {
+        if (!prev.some(obj => obj.vocabid === now.vocabid )) {
+          prev.push(now);
+        }
+        return prev;
+      }, []);
+      const reverse = uniquearr.reverse();
+      data.arr = reverse;
+      Setjson(data);
+      console.log(Getjson());
 
     const onWordChange = (event) => {
         //setWord(event.target.value);
@@ -83,3 +102,14 @@ function VocabItem({ vocab, deleteVocab }) {
     );
 
 }
+/*JSON
+arr{
+    meaning
+    vocabid
+    word
+}
+date
+noteid
+section
+type
+*/
