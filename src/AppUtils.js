@@ -5,7 +5,7 @@ import {Deletejson} from './Makejson';
 
 export function AppUtils() {
     const [pinned, setPinned] = useState([
-      {id:uuid(),notetype:'plain'},
+      {id:uuid(),notetype:'plain', content: []},
       {id:uuid(),notetype:'plain'},
       {id:uuid(),notetype:'plain'}
     ]);
@@ -20,6 +20,7 @@ export function AppUtils() {
         id: uuid(),
         notetype: ntype
       }
+
       const newNotes = [...general, single_note];
       setGeneral(newNotes);
     }

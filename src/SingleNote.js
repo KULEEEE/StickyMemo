@@ -6,13 +6,16 @@ import pin from './pin.png';
 import { Expense } from './Expense';
 
 
-export function SingleNote({ id, section, notetype, destroyNote, moveSection, translatePlain }) {
+export function SingleNote({ id, section, notetype, destroyNote, moveSection }) {
   const today = new Date();
   let dates = useState(today.toLocaleString());
+  
+  // getJson으로 id 확인하고, 없다면 생성, 
   const data = {};
   data.noteid = id;
   data.section = section;
   data.date = dates;
+  //있다면 load
 
   return (
     <div className="single-note">
@@ -22,7 +25,7 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection, tr
           <img src={pin} alt='pinIcon' className='pinIcon' />
         </button>
       </div>
-      <NoteContent notetype={notetype} data={data} />
+      <NoteContent noteid={id} notetype={notetype} data={data} />
       <div className="date">{dates}</div>
       <div className="destroy">
         <button type="button" className="btn btn-light btn-sm" 
@@ -36,7 +39,8 @@ export function SingleNote({ id, section, notetype, destroyNote, moveSection, tr
 
 function NoteContent({ notetype, data }) {
   const ntype = notetype;
-  if (ntype === 'todo') return (<Todo />);
+  
+  if (ntype === 'todo') return (<Todo data={data} />);
   else if (ntype === 'plain') {
     data.type = 'plain';
     return (
@@ -45,8 +49,8 @@ function NoteContent({ notetype, data }) {
       </div>
     );
   }
-  else if (ntype === 'vocab') return (<Vocab />);
-  else if (ntype === 'expense') return(<Expense />);
+  else if (ntype === 'vocab') return (<Vocab data={data}/>);
+  else if (ntype === 'expense') return(<Expense data={data}/>);
 }
 
 

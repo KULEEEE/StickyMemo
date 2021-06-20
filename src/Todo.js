@@ -41,8 +41,10 @@ function TodoHeader({ addTodo }) {
     </header>
   );
 }
+
 function TodoList({ todos = [], deleteTodo, data }) {
   const todoarr = new Array();
+
   return (
     <ul className="todo-list">
       {todos.map(todo => (
@@ -55,6 +57,7 @@ function TodoList({ todos = [], deleteTodo, data }) {
     </ul>
   );
 }
+
 function TodoItem({ todo, deleteTodo, todoarr, data }) {
   const [status, setStatus] = useState('');
   const { id, task } = todo;
@@ -70,6 +73,7 @@ function TodoItem({ todo, deleteTodo, todoarr, data }) {
     }
     return prev;
   }, []);
+  
   const reverse = uniquearr.reverse();
   data.arr = reverse;
   Setjson(data);
@@ -92,6 +96,7 @@ function TodoItem({ todo, deleteTodo, todoarr, data }) {
     </li>
   );
 }
+
 /* JSON
 arr{
   state
