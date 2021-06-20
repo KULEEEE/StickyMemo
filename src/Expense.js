@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ExpenseUtils } from './ExpenseUtils';
+import delete_icon from './delete-icon.png';
 
 export function Expense() {
   const { expenses, setExpenses,
@@ -135,7 +136,11 @@ function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense}) {
           style = {{"width" : "60px", "height" : "20px"}}
           onChange={onPlaceChange} />
       </td>
-      <td><button onClick={() => destroyExpense(expense.id, setTotal)}>-</button></td>
+      <td>
+        <button className = "expense-delete" onClick={() => destroyExpense(expense.id, setTotal)}>
+          <img src={delete_icon} alt='delete' className='deleteIcon'/>
+        </button>
+      </td>
     </tr>
   );
 
