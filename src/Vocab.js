@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { VocabUtils } from './VocabUtils';
 import {Getjson, Setjson} from './Makejson';
+import delete_icon from './delete-icon.png';
 
 
 export function Vocab({data}) {            
@@ -44,6 +45,7 @@ function VocabHeader({ addVocab }) {
             <td colSpan='2'>
                 <input placeholder='영어 단어'
                     value={word}
+                    style = {{"width":"135px"}}
                     onChange={onWordChange}
                     onKeyUp={submitVocab}
                     autoFocus />
@@ -85,15 +87,22 @@ function VocabItem({ vocab, deleteVocab, updateVocab, vocabarr, data }) {
         <tr className='vocab-item'>
             <td>
                 <input placeholder='word'
+                    style = {{"width":"135px"}}
                     value={vocab.word}
                     onChange={onWordChange} />
             </td>
             <td>
                 <input placeholder='meaning'
+                    style = {{"width":"135px"}}
                     value={vocab.meaning}
                     onChange={onMeaningChange} />
             </td>
-            <td><button onClick={() => deleteVocab(vocab.id)}>-</button></td>
+            <td>
+                <button onClick={() => deleteVocab(vocab.id)}
+                        className = "vocab-delete">
+                    <img src={delete_icon} alt='delete' className='deleteIcon'/>
+                </button>
+            </td>
         </tr>
     );
 

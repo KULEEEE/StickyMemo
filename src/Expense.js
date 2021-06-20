@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ExpenseUtils } from './ExpenseUtils';
+import delete_icon from './delete-icon.png';
 import {Getjson, Setjson} from './Makejson';
 
 export function Expense({data}) {
@@ -68,11 +69,13 @@ function ExpenseHeader({ addExpense }) {
         <input
           type='date'
           value={date}
+          className = "input-date"
+          // style = {{"width":"100px", "font-size" : "x-small", "height":"20px"}}
           onChange={onDateChange}
           autoFocus />
       </th>
       <th>
-        <select name="type" onChange={onTypeChange} defaultValue="">
+        <select style = {{"font-size" : "small", "height":"20px"}} name="type" onChange={onTypeChange} defaultValue="">
           <option value="income">수입</option>
           <option value="expense">지출</option>
         </select>
@@ -80,12 +83,14 @@ function ExpenseHeader({ addExpense }) {
       <th>
         <input type='number' placeholder='금액'
           value={money}
+          style = {{"width" : "60px", "height" : "20px"}}
           onChange={onMoneyChange}
           onKeyUp={submitExpense} />
       </th>
       <th>
         <input placeholder='무엇을 했나요?'
           value={place}
+          style = {{"width" : "60px", "height" : "20px"}}
           onChange={onPlaceChange}
           onKeyUp={submitExpense} />
       </th>
@@ -195,23 +200,28 @@ function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense, expense
   return (
     <tr className='expense-header' scope='row'>
       <td>
-        <input type='date' value={expense.date} onChange={onDateChange} />
+        <input type='date' className = "input-date" value={expense.date} onChange={onDateChange}  />
       </td>
       <td>
-        <select name="type" onChange={onTypeChange} value={expense.type}>
+        <select name="type" onChange={onTypeChange} value={expense.type} style = {{"font-size" : "small", "height":"20px"}}>
           <option value="income">수입</option>
           <option value="expense">지출</option>
         </select>
       </td>
       <td>
-        <input placeholder='금액' type='number' value={expense.money} onChange={onMoneyChange} />
+        <input style = {{"width" : "60px", "height" : "20px"}} placeholder='금액' type='number' value={expense.money} onChange={onMoneyChange} />
       </td>
       <td>
         <input placeholder='무엇을 했나요?'
           value={expense.place}
+          style = {{"width" : "60px", "height" : "20px"}}
           onChange={onPlaceChange} />
       </td>
-      <td><button onClick={() => destroyExpense(expense.id, setTotal)}>-</button></td>
+      <td>
+        <button className = "expense-delete" onClick={() => destroyExpense(expense.id, setTotal)}>
+          <img src={delete_icon} alt='delete' className='deleteIcon'/>
+        </button>
+      </td>
     </tr>
   );
 
