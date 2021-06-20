@@ -43,6 +43,7 @@ function VocabHeader({ addVocab }) {
             <td colSpan='2'>
                 <input placeholder='word'
                     value={word}
+                    style = {{"width":"135px"}}
                     onChange={onWordChange}
                     onKeyUp={submitVocab}
                     autoFocus />
@@ -67,11 +68,13 @@ function VocabItem({ vocab, deleteVocab }) {
         <tr className='vocab-item'>
             <td>
                 <input placeholder='word'
+                    style = {{"width":"135px"}}
                     value={vocab.word}
                     onChange={onWordChange} />
             </td>
             <td>
                 <input placeholder='meaning'
+                    style = {{"width":"135px"}}
                     value={vocab.meaning}
                     onChange={onMeaningChange} />
             </td>

@@ -28,7 +28,7 @@ function PlainHeader() {
   
     return (
       <header className='plain-header'>
-      <textarea name="plain-adder" style = {{"background-color" : "transparent", "color":"white", "padding":"5px"}} rows="8" cols="35" placeholder='Write here' value={value} onChange={handleOnChange} onKeyUp={submitPlain} autoFocus></textarea>
+      <textarea name="plain-adder" style = {{"background-color" : "transparent", "color":"white", "padding":"5px", "width" : "100%"}} rows="8" cols="35" placeholder='Write here' value={value} onChange={handleOnChange} onKeyUp={submitPlain} autoFocus></textarea>
       </header>
     );
   }

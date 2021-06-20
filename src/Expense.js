@@ -61,11 +61,13 @@ function ExpenseHeader({ addExpense }) {
         <input
           type='date'
           value={date}
+          className = "input-date"
+          // style = {{"width":"100px", "font-size" : "x-small", "height":"20px"}}
           onChange={onDateChange}
           autoFocus />
       </td>
       <td>
-        <select name="type" onChange={onTypeChange} defaultValue="">
+        <select style = {{"font-size" : "small", "height":"20px"}} name="type" onChange={onTypeChange} defaultValue="">
           <option value="income">수입</option>
           <option value="expense">지출</option>
         </select>
@@ -73,12 +75,14 @@ function ExpenseHeader({ addExpense }) {
       <td>
         <input placeholder='Money'
           value={money}
+          style = {{"width" : "60px", "height" : "20px"}}
           onChange={onMoneyChange}
           onKeyUp={submitExpense} />
       </td>
       <td>
         <input placeholder='Place'
           value={place}
+          style = {{"width" : "60px", "height" : "20px"}}
           onChange={onPlaceChange}
           onKeyUp={submitExpense} />
       </td>
@@ -114,20 +118,21 @@ function ExpenseItem({ expense, updateExpense, setTotal, destroyExpense}) {
   return (
     <tr className='expense-header'>
       <td>
-        <input type='date' value={expense.date} onChange={onDateChange} />
+        <input type='date' className = "input-date" value={expense.date} onChange={onDateChange}  />
       </td>
       <td>
-        <select name="type" onChange={onTypeChange} value={expense.type}>
+        <select name="type" onChange={onTypeChange} value={expense.type} style = {{"font-size" : "small", "height":"20px"}}>
           <option value="income">수입</option>
           <option value="expense">지출</option>
         </select>
       </td>
       <td>
-        <input placeholder='Money' value={expense.money} onChange={onMoneyChange} />
+        <input placeholder='Money' value={expense.money} onChange={onMoneyChange} style = {{"width" : "60px", "height" : "20px"}} />
       </td>
       <td>
         <input placeholder='Place'
           value={expense.place}
+          style = {{"width" : "60px", "height" : "20px"}}
           onChange={onPlaceChange} />
       </td>
       <td><button onClick={() => destroyExpense(expense.id, setTotal)}>-</button></td>
