@@ -9,10 +9,11 @@ export function TodoUtils() {
             id: uuid(),
             task
         };
-
         const newTodos = [...todos, todo];
         setTodos(newTodos);
+        console.log(newTodos);
     };
+
 
     function deleteTodo (id) {
         const newTodos = todos.filter(todo => todo.id !== id);

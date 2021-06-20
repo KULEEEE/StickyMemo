@@ -1,19 +1,54 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
 import swal from 'sweetalert';
-import {Deletejson} from './Makejson';
+import {Deletejson, Getjson} from './Makejson';
 
 export function AppUtils() {
-    const [pinned, setPinned] = useState([
-      {id:uuid(),notetype:'plain'},
-      {id:uuid(),notetype:'plain'},
-      {id:uuid(),notetype:'plain'}
-    ]);
-    const [general, setGeneral] = useState([
-      {id:uuid(),notetype:'plain'},
-      {id:uuid(),notetype:'plain'},
-      {id:uuid(),notetype:'plain'}
-    ]);
+
+    // const [pinned, setPinned] = useState([
+    //   {id:uuid(),notetype:'plain'},
+    //   {id:uuid(),notetype:'plain'},
+    //   {id:uuid(),notetype:'plain'}
+    // ]);
+    // const [general, setGeneral] = useState([
+    //   {id:uuid(),notetype:'plain'},
+    //   {id:uuid(),notetype:'plain'},
+    //   {id:uuid(),notetype:'plain'}
+    // ]);
+
+    const [pinned, setPinned] = useState();
+    const [general, setGeneral] = useState();
+    useEffect(()=>{
+      if(Getjson() === 'no'){
+        setPinned([
+          {id:uuid(),notetype:'plain'},
+          {id:uuid(),notetype:'plain'},
+          {id:uuid(),notetype:'plain'}
+        ]);
+        setGeneral([
+          {id:uuid(),notetype:'plain'},
+          {id:uuid(),notetype:'plain'},
+          {id:uuid(),notetype:'plain'}
+        ]);
+      }
+      else{
+        const array = Getjson();
+        const pin = new Array();
+        const gen = new Array();
+        for(var key=0; key<array.length; key++){
+          if(array[key].section === 'pinned'){
+            pin.push({id:array[key].noteid,notetype:array[key].type});
+          }
+          else if (array[key].section === 'general'){
+            gen.push({id:array[key].noteid,notetype:array[key].type});
+          }
+        }
+        setPinned(pin);
+        setGeneral(gen);
+        console.log(array);
+      }
+    },[]);
+    
   
     function addNote(ntype){
       const single_note = {

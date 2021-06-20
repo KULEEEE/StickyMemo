@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { VocabUtils } from './VocabUtils';
 import {Getjson, Setjson} from './Makejson';
 
@@ -14,7 +14,7 @@ export function Vocab({data}) {
         <div className="content-vocab">
             <table>
                 <tbody>
-                    <VocabHeader addVocab={addVocab} />
+                    <VocabHeader addVocab={addVocab} data={data}/>
                     {vocabs.map(vocab => (
                         <VocabItem key={vocab.id} vocab={vocab} deleteVocab={deleteVocab} translatePlain={translatePlain} vocabarr = {vocabarr} data={data}/>
                     ))}
@@ -24,9 +24,21 @@ export function Vocab({data}) {
     );
 }
 
-function VocabHeader({ addVocab }) {
+function VocabHeader({ addVocab, data }) {
     const [word, setWord] = useState('');
     const [meaning, setMeaning] = useState('');
+
+    useEffect(()=>{
+        const js = Getjson();
+        console.log(js);
+        for(var i=0; i<js.length; i++){
+            if(js[i].noteid === data.noteid){
+                for(var j=0; j<js[i].arr.length; j++){
+                  addVocab(js[i].arr[j].word, js[i].arr[j].meaning);
+                }
+            }
+        }
+    },[]);
 
     const onWordChange = (event) => {
         setWord(event.target.value);

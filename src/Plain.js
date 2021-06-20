@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { v4 as uuid } from 'uuid';
 import {Getjson, Setjson} from './Makejson';
 
@@ -13,6 +13,17 @@ export function Plain({data}) {
 function PlainHeader({data}) {
     const [value, setValue] = useState('');
     const [plain, setPlain] = useState('');
+
+    useEffect(()=>{
+        const js = Getjson();
+        for(var i=0; i<js.length; i++){
+            if(js[i].noteid === data.noteid){
+                setValue(js[i].value);
+            }
+        }
+        console.log(js);
+    },[]);
+     
   
     const handleOnChange = (event) => {
       setValue(event.target.value);
