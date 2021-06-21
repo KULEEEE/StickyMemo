@@ -6,6 +6,9 @@
 `단어장 노트(Vocabulary Note)`: 정리해야할 단어는 산더미인데 하나씩 사전 검색하기 귀찮을 때  
 `지출 노트(Expense Note)`: 어지러운 수입/지출, 얼마가 남은건지 궁금할 때  
 
+![image](https://user-images.githubusercontent.com/62787552/122742433-e73cb000-d2c0-11eb-9742-b5b37077ef98.png)
+
+
 ## 사용 방법
 1. 메모 추가  
     : 아래 섹션의 'PLAIN NOTE', 'TODO NOTE', 'VOCAB NOTE', 'EXPENSE NOTE' 중 원하는 노트에 맞추어 클릭하면 노트를 추가할 수 있어요. 
