@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TodoUtils } from './TodoUtils';
 import delete_icon from './delete-icon.png';
 import {Getjson, Setjson} from './Makejson';
@@ -10,18 +10,31 @@ export function Todo({data}) {
             deleteTodo} = TodoUtils();
     return (
         <div className="content-todo">
-            <TodoHeader addTodo={addTodo} />
+            <TodoHeader addTodo={addTodo} data={data} />
             <TodoList todos={todos} deleteTodo={deleteTodo} data={data} />
         </div>
     );
 }
 
-function TodoHeader({ addTodo }) {
+function TodoHeader({ addTodo, data }) {
   const [value, setValue] = useState('');
+
+  useEffect(()=>{
+    const js = Getjson();
+    console.log(js);
+    for(var i=0; i<js.length; i++){
+        if(js[i].noteid === data.noteid){
+            for(var j=0; j<js[i].arr.length; j++){
+              addTodo(js[i].arr[j].value);
+            }
+        }
+    }
+},[]);
 
   const handleOnChange = (event) => {
     setValue(event.target.value);
   };
+  
 
   const submitTodo = (event) => {
     if (event.key !== 'Enter')

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ExpenseUtils } from './ExpenseUtils';
 import delete_icon from './delete-icon.png';
 import {Getjson, Setjson} from './Makejson';
@@ -16,7 +16,7 @@ export function Expense({data}) {
     <div className="content-expense">
       <table>
         <thead>
-        <ExpenseHeader expenses={expenses} addExpense={addExpense} setTotal={setTotal} />
+        <ExpenseHeader expenses={expenses} addExpense={addExpense} setTotal={setTotal} data={data}/>
         </thead>
         <tbody>
           {expenses.map(expense => (
@@ -30,11 +30,23 @@ export function Expense({data}) {
   );
 }
 
-function ExpenseHeader({ addExpense }) {
+function ExpenseHeader({ addExpense, data }) {
   const [date, setDate] = useState('2021-01-01'); // when
   const [type, setType] = useState('income'); // income or expense, income is default
   const [place, setPlace] = useState(''); // where
   const [money, setMoney] = useState(''); // how much
+
+  useEffect(()=>{
+    const js = Getjson();
+    console.log(js);
+    for(var i=0; i<js.length; i++){
+        if(js[i].noteid === data.noteid){
+            for(var j=0; j<js[i].arr.length; j++){
+              addExpense(js[i].arr[j].expensedate, js[i].arr[j].expensetype, js[i].arr[j].expenseplace, js[i].arr[j].expensemoney);
+            }
+        }
+    }
+},[]);
 
   const onDateChange = (event) => {
     setDate(event.target.value);
