@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TodoUtils } from './TodoUtils';
+import delete_icon from './delete-icon.png';
 import {Getjson, Setjson} from './Makejson';
 
 export function Todo({data}) {
@@ -46,7 +47,7 @@ function TodoHeader({ addTodo, data }) {
     <header className='todo-header'>
       <input
         className='todo-adder'
-        placeholder='Write your task here'
+        placeholder='무엇을 해야하나요?'
         value={value}
         onChange={handleOnChange}
         onKeyUp={submitTodo}
@@ -79,7 +80,7 @@ function TodoItem({ todo, deleteTodo, todoarr, data }) {
   todoarr.push(todoobj);
   const uniquearr = todoarr.reduceRight((prev, now) => {
     if (!prev.some(obj => obj.todoid === now.todoid )) {
-      prev.push(now);
+      prev.push(now); 
     }
     return prev;
   }, []);
@@ -101,7 +102,10 @@ function TodoItem({ todo, deleteTodo, todoarr, data }) {
       <label class="todo-label">{todo.task}</label>
       <button
         className='todo-delete'
-        onClick={() => deleteTodo(id)} />
+        onClick={() => deleteTodo(id)}>
+          <img src={delete_icon} alt='delete' className='deleteIcon'/>
+      </button>
+
     </li>
   );
 }
