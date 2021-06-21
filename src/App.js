@@ -22,14 +22,14 @@ function App() {
        </header> */}
 
       <section className="pinned-zone">
-        {/* <header>PINNED</header> */}
-        {pinned.map(singlenote => (<SingleNote key = {singlenote.id} id = {singlenote.id} section='pinned' notetype={singlenote.notetype} destroyNote={destroyNote} moveSection={moveSection}/>))}
+        {/* <header>Pinned zone</header> */}
+        {pinned&&pinned.map(singlenote => (<SingleNote key = {singlenote.id} id = {singlenote.id} section='pinned' notetype={singlenote.notetype} destroyNote={destroyNote} moveSection={moveSection}/>))}
       </section>
 
       <section className="general-zone">
         {/* <header>GENERAL</header> */}
         <DefaultNote addNote={addNote}/>
-        {general.map(singlenote => (<SingleNote key = {singlenote.id} id = {singlenote.id} section='general' notetype={singlenote.notetype} destroyNote={destroyNote} moveSection={moveSection}/>))}
+        {general&&general.map(singlenote => (<SingleNote key = {singlenote.id} id = {singlenote.id} section='general' notetype={singlenote.notetype} destroyNote={destroyNote} moveSection={moveSection}/>))}
       </section>  
     </section>
   );
