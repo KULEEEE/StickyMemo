@@ -88,7 +88,7 @@ function ExpenseHeader({ addExpense }) {
           onKeyUp={submitExpense} />
       </th>
       <th>
-        <input placeholder='무엇을 했나요?'
+        <input placeholder='항목'
           value={place}
           style = {{"width" : "60px", "height" : "20px"}}
           onChange={onPlaceChange}

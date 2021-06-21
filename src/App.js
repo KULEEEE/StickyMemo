@@ -22,7 +22,7 @@ function App() {
        </header> */}
 
       <section className="pinned-zone">
-        <header>PINNED</header>
+        {/* <header>PINNED</header> */}
         {pinned.map(singlenote => (<SingleNote key = {singlenote.id} id = {singlenote.id} section='pinned' notetype={singlenote.notetype} destroyNote={destroyNote} moveSection={moveSection}/>))}
       </section>
 
